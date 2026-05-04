@@ -15,7 +15,7 @@ export function middleware(request: NextRequest) {
   url.host = canonical.host;
   url.protocol = canonical.protocol;
   url.port = canonical.port;
-  return NextResponse.redirect(url, 301);
+  return NextResponse.redirect(url, 308);
 }
 
 export const config = {
