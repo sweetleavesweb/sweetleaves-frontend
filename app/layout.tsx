@@ -54,7 +54,7 @@ export default async function RootLayout({
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-3M9FSQWF9T" />
         <script
           dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || []; function gtag(...args) { window.dataLayer.push(args); } gtag('js', new Date()); gtag('config', 'G-3M9FSQWF9T');`,
+            __html: `window.dataLayer = window.dataLayer || []; function gtag(){window.dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-3M9FSQWF9T');`,
           }}
         />
         <script
