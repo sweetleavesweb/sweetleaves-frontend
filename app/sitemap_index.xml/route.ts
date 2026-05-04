@@ -1,4 +1,4 @@
-const BASE = "https://www.sweetleavesnorthloop.com";
+const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sweetleavesnorthloop.com";
 
 export const revalidate = 3600;
 
