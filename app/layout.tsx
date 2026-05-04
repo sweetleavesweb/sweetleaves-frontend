@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { cookies } from "next/headers";
+import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import AgeGate from "./components/AgeGate";
 import AlpineIQProvider from "./components/AlpineIQProvider";
 import PageViewTracker from "./components/PageViewTracker";
@@ -49,29 +50,9 @@ export default async function RootLayout({
 
   return (
     <html lang="en" className="bg-sky-blue">
-      <head>
-        {/* GTM: must load as high as possible in <head> */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-3M9FSQWF9T" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `window.dataLayer = window.dataLayer || []; function gtag(){window.dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-3M9FSQWF9T');`,
-          }}
-        />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-KW2H37S6');`,
-          }}
-        />
-      </head>
+      <GoogleTagManager gtmId="GTM-KW2H37S6" />
+      <GoogleAnalytics gaId="G-3M9FSQWF9T" />
       <body className={`${poppins.variable} antialiased`}>
-        <noscript>
-          <iframe
-            src="https://www.googletagmanager.com/ns.html?id=GTM-KW2H37S6"
-            height="0"
-            width="0"
-            style={{ display: "none", visibility: "hidden" }}
-          />
-        </noscript>
         <AgeGate initialVerified={initialVerified}>
           <div className="relative min-h-screen flex flex-col bg-sky-blue bg-[url(/rewards/circles-bg.svg)] bg-cover bg-center bg-fixed">
             <AlpineIQProvider />
