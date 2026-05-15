@@ -5,6 +5,7 @@ import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import AgeGate from "./components/AgeGate";
 import AlpineIQProvider from "./components/AlpineIQProvider";
 import PageViewTracker from "./components/PageViewTracker";
+import GardenClubPopup from "./components/GardenClubPopup";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import "./globals.css";
@@ -57,6 +58,7 @@ export default async function RootLayout({
           <div className="relative min-h-screen flex flex-col bg-sky-blue bg-[url(/rewards/circles-bg.svg)] bg-cover bg-center bg-fixed">
             <AlpineIQProvider />
             <PageViewTracker />
+            <GardenClubPopup />
 
             <Nav />
 
