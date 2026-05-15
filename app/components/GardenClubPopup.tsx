@@ -7,8 +7,7 @@ import { usePathname } from "next/navigation";
 import { useAgeGateStatus } from "./AgeGate";
 
 const STORAGE_KEY = "gardenClub:dismissedAt";
-const TTL_MS =
-  process.env.NODE_ENV === "development" ? 20_000 : 24 * 60 * 60 * 1000;
+const TTL_MS = Number(process.env.NEXT_PUBLIC_GARDEN_CLUB_POPUP_TTL_MS) || 24 * 60 * 60 * 1000;
 
 function isDismissedWithinTtl(): boolean {
   const raw = localStorage.getItem(STORAGE_KEY);
