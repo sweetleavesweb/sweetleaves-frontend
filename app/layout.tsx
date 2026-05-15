@@ -54,7 +54,8 @@ export default async function RootLayout({
       <GoogleAnalytics gaId="G-3M9FSQWF9T" />
       <body className={`${poppins.variable} antialiased`}>
         <AgeGate initialVerified={initialVerified}>
-          <div className="relative min-h-screen flex flex-col bg-sky-blue bg-[url(/rewards/circles-bg.svg)] bg-cover bg-center">
+          <div aria-hidden="true" className="fixed inset-0 -z-10 bg-sky-blue bg-[url(/rewards/circles-bg.svg)] bg-cover bg-center" />
+          <div className="relative min-h-screen flex flex-col">
             <AlpineIQProvider />
             <PageViewTracker />
 
