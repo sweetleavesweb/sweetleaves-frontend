@@ -18,7 +18,7 @@ A dismissible popup promoting Garden Club signup. Appears after the age gate is 
 
 Two independent triggers — whichever fires first shows the popup:
 
-1. **Scroll trigger:** A `scroll` event listener on `window` checks `window.scrollY / document.body.scrollHeight >= 0.25`. Fires once, then the listener removes itself.
+1. **Scroll trigger:** A `scroll` event listener on `window` checks `window.scrollY / document.documentElement.scrollHeight >= 0.25`. Fires once, then the listener removes itself.
 2. **Navigation trigger:** A `useEffect` watching `usePathname()` — any pathname change while the age gate is verified counts as a trigger.
 
 Both triggers gate on:

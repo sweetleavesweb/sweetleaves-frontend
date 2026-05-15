@@ -7,7 +7,8 @@ import { usePathname } from "next/navigation";
 import { useAgeGateStatus } from "./AgeGate";
 
 const STORAGE_KEY = "gardenClub:dismissedAt";
-const TTL_MS = 24 * 60 * 60 * 1000;
+const TTL_MS =
+  process.env.NODE_ENV === "development" ? 20_000 : 24 * 60 * 60 * 1000;
 
 function isDismissedWithinTtl(): boolean {
   const raw = localStorage.getItem(STORAGE_KEY);
@@ -20,6 +21,7 @@ export default function GardenClubPopup() {
   const status = useAgeGateStatus();
   const pathname = usePathname();
   const triggered = useRef(false);
+  const mounted = useRef(false);
 
   function maybeShow() {
     if (triggered.current) return;
@@ -48,10 +50,14 @@ export default function GardenClubPopup() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [status, pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Navigation trigger: fires on any pathname change while verified
+  // Navigation trigger: fires on page navigation, skips initial mount
   useEffect(() => {
+    if (!mounted.current) {
+      mounted.current = true;
+      return;
+    }
     maybeShow();
-  }, [pathname, status]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function handleDismiss() {
     setVisible(false);
@@ -61,36 +67,26 @@ export default function GardenClubPopup() {
   if (!visible) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-almost-black/40 px-6">
-      <div className="relative bg-dark-green rounded-2xl p-8 w-full max-w-sm shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-almost-black/40 px-2">
+      <div className="relative bg-dark-green rounded-2xl p-6 w-full max-w-md shadow-2xl">
         <button
           type="button"
           onClick={handleDismiss}
           aria-label="Close"
           className="absolute top-4 right-4 text-white text-xl leading-none hover:opacity-70 transition-opacity"
         >
-          ✕
+          X
         </button>
 
-        <div className="flex items-center gap-3 mb-4">
-          <Image
-            src="/rewards/garden-club-text.png"
-            alt="Garden Club"
-            width={220}
-            height={38}
-            className="h-auto"
-          />
-          <div className="flex-shrink-0 w-12 h-12 bg-light-gold rounded-full flex items-center justify-center">
-            <Image
-              src="/logos-and-icons/icon/Sweetleaves_Icon_DarkGreen.svg"
-              alt=""
-              width={28}
-              height={28}
-            />
-          </div>
-        </div>
+        <Image
+          src="/rewards/garden-club-text.png"
+          alt="Garden Club"
+          width={817}
+          height={143}
+          className="w-full h-auto mb-4 -ml-2 mt-2"
+        />
 
-        <p className="text-ivory text-sm mb-6">
+        <p className="text-white text-base mb-6 text-pretty">
           Earn points with every purchase and get exclusive access to new
           products and giveaways.
         </p>
