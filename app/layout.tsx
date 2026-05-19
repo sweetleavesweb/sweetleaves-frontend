@@ -50,7 +50,7 @@ export default async function RootLayout({
     ttlHours !== 0 && cookieStore.get("ageGate:verified")?.value === "true";
 
   return (
-    <html lang="en" className="bg-sky-blue scroll-pt-[141px] [@media(min-width:1100px)]:scroll-pt-[113px]">
+    <html lang="en" className={`bg-sky-blue scroll-pt-[141px] [@media(min-width:1100px)]:scroll-pt-[113px]${initialVerified ? "" : " overflow-hidden"}`}>
       <GoogleTagManager gtmId="GTM-KW2H37S6" />
       <GoogleAnalytics gaId="G-3M9FSQWF9T" />
       <body className={`${poppins.variable} antialiased`}>

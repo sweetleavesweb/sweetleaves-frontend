@@ -54,19 +54,6 @@ export default function AgeGate({
   const yesButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    if (status === "verified") {
-      return;
-    }
-
-    const previousOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = previousOverflow;
-    };
-  }, [status]);
-
-  useEffect(() => {
     if (status !== "prompt") {
       return;
     }
@@ -119,6 +106,7 @@ export default function AgeGate({
     if (ttlHours > 0) {
       document.cookie = `ageGate:verified=true; max-age=${ttlHours * 3600}; path=/; SameSite=Lax`;
     }
+    document.documentElement.classList.remove("overflow-hidden");
     setStatus("verified");
   };
 
