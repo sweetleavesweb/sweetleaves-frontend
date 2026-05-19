@@ -49,13 +49,14 @@ export default function GardenClubPopup() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [status, pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  // Navigation trigger: fires on page navigation, skips initial mount
+  // Navigation trigger: fires on page navigation after a short delay, skips initial mount
   useEffect(() => {
     if (!mounted.current) {
       mounted.current = true;
       return;
     }
-    maybeShow();
+    const timeout = setTimeout(maybeShow, 3000);
+    return () => clearTimeout(timeout);
   }, [pathname]); // eslint-disable-line react-hooks/exhaustive-deps
 
   function handleDismiss() {
