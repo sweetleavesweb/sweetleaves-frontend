@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import {
   HomeHero,
   ProductGrid,
-  // DealsBanner,
+  DealsBanner,
   StorePhoto,
   ReviewsSection,
   BlogSection,
@@ -28,7 +28,7 @@ export default async function Home() {
       <div className="relative z-10 max-w-[1365px] mx-auto px-4 md:px-6 py-5 md:py-8 flex flex-col gap-5 lg:gap-[30px]">
         <HomeHero />
         <ProductGrid />
-        {/* <DealsBanner /> */}
+        <DealsBanner />
         <StorePhoto
           src="/home/store-exterior.png"
           alt="Sweetleaves dispensary exterior"
