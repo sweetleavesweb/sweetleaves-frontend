@@ -21,12 +21,9 @@ export default function DealsCarousel({ slides }: Props) {
     return () => clearInterval(interval);
   }, [slides.length]);
 
-  const next = () => setIndex((i) => (i + 1) % slides.length);
-
   return (
     <div
-      className="relative aspect-[2/1] md:aspect-[4/1] w-full max-w-[1280px] mx-auto rounded-[40px] overflow-hidden cursor-pointer"
-      onClick={slides.length > 1 ? next : undefined}
+      className="relative aspect-[2/1] md:aspect-[4/1] w-full max-w-[1280px] mx-auto rounded-[40px] overflow-hidden"
     >
       <Image
         src={slides[index].url}
