@@ -23,7 +23,7 @@ export async function getWPData(
   variables: Record<string, any> = {},
   options: WPFetchOptions = {}
 ) {
-  const endpoint = process.env.WP_GRAPHQL_ENDPOINT;
+  const endpoint = process.env.WP_GRAPHQL_ENDPOINT || "https://cms.sweetleaves.co/graphql";
 
   if (!endpoint) {
     throw new Error("Missing WP_GRAPHQL_ENDPOINT env var");
