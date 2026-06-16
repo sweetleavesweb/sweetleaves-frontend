@@ -39,6 +39,7 @@ const GET_DEALS_QUERY = `
 
 export async function getDealsBannerSlides(): Promise<DealSlide[]> {
   const data = await getWPData(GET_DEALS_QUERY);
+  if (!data) return [];
   const nodes: DealNode[] = data?.deals?.nodes ?? [];
   return nodes
     .filter((node) => node?.featuredImage?.node?.sourceUrl)

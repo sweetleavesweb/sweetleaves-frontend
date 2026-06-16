@@ -247,6 +247,8 @@ export async function getPosts({
   };
 }
 
+export const EMPTY_POSTS_RESULT: PostsResult = { posts: [], pageCount: 1 };
+
 // ---------------------------------------------------------------------------
 // getPost
 // ---------------------------------------------------------------------------
@@ -257,6 +259,7 @@ export async function getPost(slug: string): Promise<WPPost | null> {
     { slug },
     { revalidateSeconds: BLOG_REVALIDATE_SECONDS }
   );
+  if (!data) return null;
   const node = data?.post ?? null;
   return node ? mapPost(node) : null;
 }
@@ -271,6 +274,7 @@ export async function getCategories(): Promise<WPCategory[]> {
     {},
     { revalidateSeconds: BLOG_REVALIDATE_SECONDS }
   );
+  if (!data) return [];
   const nodes: any[] = data?.categories?.nodes ?? [];
   return nodes
     .filter(
@@ -299,6 +303,7 @@ export async function getAdjacentPost(
     {},
     { revalidateSeconds: BLOG_REVALIDATE_SECONDS }
   );
+  if (!data) return null;
   const nodes: { slug: string; title: string }[] = data?.posts?.nodes ?? [];
   const index = nodes.findIndex((p) => p.slug === slug);
 

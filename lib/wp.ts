@@ -22,12 +22,9 @@ export async function getWPData(
   query: string,
   variables: Record<string, any> = {},
   options: WPFetchOptions = {}
-) {
-  const endpoint = process.env.WP_GRAPHQL_ENDPOINT || "https://cms.sweetleaves.co/graphql";
-
-  if (!endpoint) {
-    throw new Error("Missing WP_GRAPHQL_ENDPOINT env var");
-  }
+): Promise<any | null> {
+  const endpoint =
+    process.env.WP_GRAPHQL_ENDPOINT ?? "https://cms.sweetleaves.co/graphql";
 
   const revalidateSeconds = getRevalidateSeconds(options.revalidateSeconds);
   const fetchOptions: RequestInit & { next?: { revalidate: number } } = {
@@ -42,12 +39,21 @@ export async function getWPData(
     fetchOptions.next = { revalidate: revalidateSeconds };
   }
 
-  const res = await fetch(endpoint, fetchOptions);
-  if (!res.ok) {
-    const text = await res.text();
-    throw new Error(`WP GraphQL error ${res.status}: ${text}`);
+  try {
+    const res = await fetch(endpoint, fetchOptions);
+    if (!res.ok) {
+      const text = await res.text();
+      console.error(`[WP] HTTP ${res.status} from ${endpoint}: ${text.slice(0, 200)}`);
+      return null;
+    }
+    const json = await res.json();
+    if (json.errors) {
+      console.error(`[WP] GraphQL errors:`, JSON.stringify(json.errors));
+      return null;
+    }
+    return json.data;
+  } catch (err) {
+    console.error(`[WP] Fetch failed for ${endpoint}:`, err);
+    return null;
   }
-  const json = await res.json();
-  if (json.errors) throw new Error(JSON.stringify(json.errors));
-  return json.data;
 }
