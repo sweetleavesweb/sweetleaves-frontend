@@ -80,6 +80,7 @@ export async function getFaqSections(): Promise<FaqSection[]> {
   const data = await getWPData(GET_FAQS_QUERY, {}, {
     revalidateSeconds: FAQ_REVALIDATE_SECONDS,
   });
+  if (!data) return [];
 
   const nodes: any[] = data?.faqs?.nodes ?? [];
   const mapped = nodes.map(mapFaq);
@@ -124,6 +125,7 @@ export async function getCommonFaqs(): Promise<FaqItem[]> {
   const data = await getWPData(GET_FAQS_QUERY, {}, {
     revalidateSeconds: FAQ_REVALIDATE_SECONDS,
   });
+  if (!data) return [];
 
   const nodes: any[] = data?.faqs?.nodes ?? [];
   return nodes
@@ -141,6 +143,7 @@ export async function getFaqsBySection(sectionSlug: string): Promise<FaqItem[]> 
   const data = await getWPData(GET_FAQS_QUERY, {}, {
     revalidateSeconds: FAQ_REVALIDATE_SECONDS,
   });
+  if (!data) return [];
 
   const nodes: any[] = data?.faqs?.nodes ?? [];
   return nodes

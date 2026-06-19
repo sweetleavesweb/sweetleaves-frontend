@@ -12,6 +12,7 @@ const GET_MARQUEE_ITEMS_QUERY = `
 
 export async function getMarqueeItems(): Promise<string[]> {
   const data = await getWPData(GET_MARQUEE_ITEMS_QUERY);
+  if (!data) return [];
   const nodes: { title: string }[] = data?.marqueeItems?.nodes ?? [];
   return nodes.map((node) => node.title ?? "").filter(Boolean);
 }
