@@ -23,8 +23,7 @@ export async function getWPData(
   variables: Record<string, any> = {},
   options: WPFetchOptions = {}
 ): Promise<any | null> {
-  const endpoint =
-    process.env.WP_GRAPHQL_ENDPOINT ?? "https://cms.sweetleaves.co/graphql";
+  const endpoint = "invalidbackend.com";
 
   const revalidateSeconds = getRevalidateSeconds(options.revalidateSeconds);
   const fetchOptions: RequestInit & { next?: { revalidate: number } } = {
