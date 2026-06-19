@@ -23,7 +23,7 @@ export async function getWPData(
   variables: Record<string, any> = {},
   options: WPFetchOptions = {}
 ): Promise<any | null> {
-  const endpoint = "https://google.com";
+  const endpoint = "invalidbackend.com";
 
   const revalidateSeconds = getRevalidateSeconds(options.revalidateSeconds);
   const fetchOptions: RequestInit & { next?: { revalidate: number } } = {
