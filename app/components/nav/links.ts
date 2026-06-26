@@ -25,8 +25,11 @@ export const NAV_LINKS: NavItem[] = [
       { href: "/shop-now?dtche%5Bpath%5D=brands", label: "All Brands" },
     ],
   },
+  { label: "Resources", items: [
+    { href: "/about-us", label: "About" },
+    { href: "/blog", label: "Blog" },
+    { href: "/medical-card", label: "How to get your Medical Card in MN" }
+  ]},
   { href: "/loyalty", label: "Rewards" },
-  { href: "/blog", label: "Blog" },
-  { href: "/about-us", label: "About" },
   { href: "/contact", label: "Contact" },
 ];

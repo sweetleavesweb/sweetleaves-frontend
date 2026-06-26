@@ -1,4 +1,5 @@
 import Link from "next/link";
+import VeteranShortcut from "./VeteranShortcut";
 
 interface StepProps {
   num: number;
@@ -62,34 +63,17 @@ export default function HowToRenew() {
   return (
     <section className="bg-parchment border border-sage rounded-[40px] flex flex-col gap-8 px-6 py-8 md:px-10 md:py-10">
       <div className="flex flex-col gap-2 items-center text-center">
-        <span className="bg-orange-glow text-white font-poppins-semibold text-xs uppercase tracking-[0.1em] px-4 py-1.5 rounded-full">
-          Renewal Process
-        </span>
         <h2 className="font-poppins-bold text-3xl md:text-display text-dark-green leading-[0.95]">
           How to Renew
         </h2>
-        <p className="font-poppins-regular text-lg text-dark max-w-2xl leading-relaxed">
+        <p className="font-poppins-regular text-lg text-dark max-w-2xl leading-relaxed mt-2">
           Patients must re-enroll every three years. The state sends reminders 60 and 30 days
           before your enrollment expires — follow these steps to stay covered.
         </p>
       </div>
 
       {/* Veteran shortcut */}
-      <div className="bg-dark-green rounded-[30px] px-6 py-5 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-        <p className="font-poppins-bold text-lg text-light-gold shrink-0">Are You a Veteran?</p>
-        <p className="font-poppins-regular text-base text-white/80 leading-[1.45]">
-          You can{" "}
-          <a
-            href="https://cannabis.web.health.state.mn.us/enrollment/veteran/certify.xhtml"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-light-gold underline hover:opacity-80 transition-opacity"
-          >
-            self-certify for free
-          </a>{" "}
-          — no physician visit needed. Skip straight to step 3.
-        </p>
-      </div>
+      <VeteranShortcut dark skipTo="step 3."/>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6 w-full">
         {STEPS.map((s) => (
@@ -98,15 +82,9 @@ export default function HowToRenew() {
       </div>
 
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
-        <Link
-          href="/contact/"
-          className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity text-center"
-        >
-          Request Renewal Assistance
-        </Link>
         <a
           href="mailto:info@sweetleavesnorthloop.com"
-          className="bg-dark-green text-white font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity text-center"
+          className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity text-center"
         >
           Chat With Us
         </a>

@@ -19,7 +19,7 @@ function Step({ num, title, description, href }: StepProps) {
             href={href}
             target="_blank"
             rel="noopener noreferrer"
-            className="font-poppins-bold text-lg text-dark-green underline decoration-light-gold decoration-2 underline-offset-2 hover:text-orange-glow transition-colors leading-tight"
+            className="font-poppins-bold text-lg text-dark-green underline decoration-dark-green decoration-2 underline-offset-2 hover:text-orange-glow hover:decoration-orange-glow transition-colors leading-tight"
           >
             {title}
           </a>
@@ -40,24 +40,25 @@ const STEPS: StepProps[] = [
     title: "Complete your Self-Evaluation",
     description:
       "Log into your patient portal and complete the self-evaluation — it's required once per quarter.",
+    href: "https://cannabis.web.health.state.mn.us/login.xhtml"
   },
   {
     num: 2,
     title: "Schedule your pharmacist appointment",
     description:
       "Book a required consultation with a Sweetleaves pharmacist to register for medication dispensation.",
-    href: "https://outlook.office.com/book/SweetleavesPharmacistsConsultation@sweetleavesnorthloop.com/?ismsaljsauthenabled",
+    href: "https://bookings.cloud.microsoft/book/Sweetleaves@sweetleavesnorthloop.com/?ismsaljsauthenabled",
   },
   {
     num: 3,
-    title: "Place your order",
-    description: "Browse the medical menu on our website and place your order.",
-  },
-  {
-    num: 4,
     title: "Select the medical menu",
     description:
       "When browsing products, make sure you've selected the medical menu to see patient pricing.",
+  },
+  {
+    num: 4,
+    title: "Place your order",
+    description: "Browse the medical menu on our website and place your order.",
   },
   {
     num: 5,
@@ -73,6 +74,7 @@ const STEPS: StepProps[] = [
     num: 7,
     title: "Join the Garden Club",
     description: "Earn points on every purchase and unlock exclusive perks and savings.",
+    href: "/loyalty"
   },
 ];
 
@@ -80,13 +82,10 @@ export default function FirstPurchase() {
   return (
     <section className="bg-parchment border border-sage rounded-[40px] flex flex-col gap-8 px-6 py-8 md:px-10 md:py-10">
       <div className="flex flex-col gap-2 items-center text-center">
-        <span className="bg-orange-glow text-white font-poppins-semibold text-xs uppercase tracking-[0.1em] px-4 py-1.5 rounded-full">
-          What to Expect
-        </span>
         <h2 className="font-poppins-bold text-3xl md:text-display text-dark-green leading-[0.95]">
           Preparing for Your First Purchase
         </h2>
-        <p className="font-poppins-regular text-lg text-dark max-w-2xl leading-relaxed">
+        <p className="font-poppins-regular text-lg text-dark max-w-2xl leading-relaxed mt-2">
           Before your first visit to Sweetleaves as a medical patient, here&apos;s what to do.
         </p>
       </div>
