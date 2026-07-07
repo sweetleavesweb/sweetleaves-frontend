@@ -120,13 +120,13 @@ export default function WhyCertify() {
     <section className="bg-parchment border border-sage rounded-[40px] flex flex-col gap-7 px-6 py-8 md:px-10 md:py-10">
       <div className="flex flex-col gap-2 items-center text-center">
         <h2 className="font-poppins-bold text-3xl md:text-display text-dark-green leading-[0.95]">
-          Why Get Your Medical Cannabis Certification in Minnesota?
+          Benefits
         </h2>
         <p className="font-poppins-regular text-lg text-dark max-w-2xl leading-relaxed mt-2">
           Having your medical cannabis certification opens the door to a variety of perks
           when you shop with us at{" "}
           <a
-            href="https://sweetleavesnorthloop.com/shop-now/"
+            href="/shop-med/"
             className="text-orange-glow underline hover:opacity-80 transition-opacity"
           >
             Sweetleaves

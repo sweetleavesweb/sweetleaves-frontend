@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import DutchieEmbed from "./components/DutchieEmbed";
+import DutchieEmbed from "../components/DutchieEmbed";
 
 export const metadata: Metadata = {
   title: "Shop Now",

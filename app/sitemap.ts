@@ -17,6 +17,7 @@ const staticRoutes: Array<{ path: string } & RouteConfig> = [
   { path: "/faqs/", changeFrequency: "monthly", priority: 0.5 },
   { path: "/loyalty/", changeFrequency: "monthly", priority: 0.5 },
   { path: "/shop-now/", changeFrequency: "weekly", priority: 1.0 },
+  { path: "/shop-med/", changeFrequency: "weekly", priority: 1.0 },
   { path: "/certificate-of-analysis/", changeFrequency: "monthly", priority: 0.5 },
   { path: "/blog/", changeFrequency: "weekly", priority: 0.8 },
 ];

@@ -77,14 +77,23 @@ export default function MobileNav() {
           </button>
         </div>
 
-        {/* Shop Now button — always visible */}
-        <Link
-          href="/shop-now/"
-          onClick={close}
-          className="mt-4 flex items-center justify-center bg-light-gold text-dark-green font-poppins-semibold uppercase text-base py-3.5 rounded-full hover:opacity-90 transition-opacity w-full"
-        >
-          Shop Now
-        </Link>
+        {/* Shop buttons — always visible */}
+        <div className="mt-4 flex gap-3">
+          <Link
+            href="/shop-med/"
+            onClick={close}
+            className="flex-1 flex items-center justify-center bg-light-gold text-dark-green font-poppins-semibold uppercase text-base py-3.5 rounded-full hover:opacity-90 transition-opacity"
+          >
+            Shop Med
+          </Link>
+          <Link
+            href="/shop-now/"
+            onClick={close}
+            className="flex-1 flex items-center justify-center bg-light-gold text-dark-green font-poppins-semibold uppercase text-base py-3.5 rounded-full hover:opacity-90 transition-opacity"
+          >
+            Shop Rec
+          </Link>
+        </div>
 
         {/* Expanded menu */}
         <div

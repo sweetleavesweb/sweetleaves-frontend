@@ -104,7 +104,7 @@ export default function HowToCertify() {
                 <Step key={s.num} {...s} />
               ))}
               <Link
-                href="mailto:info@sweetleavesnorthloop.com"
+                href="mailto:medical@sweetleavesnorthloop.com"
                 className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity text-center"
               >
                 Email Us

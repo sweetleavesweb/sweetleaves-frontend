@@ -83,7 +83,7 @@ export default function HowToRenew() {
 
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
         <a
-          href="mailto:info@sweetleavesnorthloop.com"
+          href="mailto:medical@sweetleavesnorthloop.com"
           className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity text-center"
         >
           Chat With Us
