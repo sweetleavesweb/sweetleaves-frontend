@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import MedicalHero from "./components/MedicalHero";
+import GuideRecap from "./components/GuideRecap";
 import WhyCertify from "./components/WhyCertify";
 import HowToCertify from "./components/HowToCertify";
 import FirstPurchase from "./components/FirstPurchase";
@@ -40,7 +40,7 @@ export default function MedicalCardPage() {
       <WhyRenew />
       <HowToRenew />
 
-      <MedicalHero />
+      <GuideRecap />
     </div>
   );
 }

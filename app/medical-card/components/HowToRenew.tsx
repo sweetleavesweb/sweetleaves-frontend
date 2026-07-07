@@ -1,39 +1,5 @@
-import Link from "next/link";
+import Step, { type StepProps } from "./Step";
 import VeteranShortcut from "./VeteranShortcut";
-
-interface StepProps {
-  num: number;
-  title: string;
-  description?: string;
-  href?: string;
-}
-
-function Step({ num, title, description, href }: StepProps) {
-  return (
-    <div className="flex gap-4 items-start">
-      <span className="shrink-0 bg-orange-glow text-white rounded-full size-[42px] flex items-center justify-center font-poppins-bold text-xl leading-none">
-        {num}
-      </span>
-      <div className="pt-1.5">
-        {href ? (
-          <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-poppins-bold text-lg text-dark-green underline decoration-light-gold decoration-2 underline-offset-2 hover:text-orange-glow transition-colors leading-tight"
-          >
-            {title}
-          </a>
-        ) : (
-          <p className="font-poppins-bold text-lg text-dark-green leading-tight">{title}</p>
-        )}
-        {description && (
-          <p className="font-poppins-regular text-base text-dark mt-1 leading-[1.45]">{description}</p>
-        )}
-      </div>
-    </div>
-  );
-}
 
 const STEPS: StepProps[] = [
   {

@@ -1,29 +1,5 @@
-import Link from "next/link";
+import Step, { type StepProps } from "./Step";
 import VeteranShortcut from "./VeteranShortcut";
-
-interface StepProps {
-  num: number;
-  title: string;
-  description: string;
-}
-
-function Step({ num, title, description }: StepProps) {
-  return (
-    <div className="flex gap-4 items-start">
-      <span className="shrink-0 bg-light-gold text-dark-green rounded-full size-[42px] flex items-center justify-center font-poppins-bold text-xl leading-none">
-        {num}
-      </span>
-      <div className="pt-1.5">
-        <p className="font-poppins-bold text-lg text-white leading-tight">
-          {title}
-        </p>
-        <p className="font-poppins-regular text-base text-white/80 mt-1 leading-[1.45]">
-          {description}
-        </p>
-      </div>
-    </div>
-  );
-}
 
 const PHYSICIAN_STEPS: StepProps[] = [
   {
@@ -76,7 +52,7 @@ export default function HowToCertify() {
         </h2>
         <p className="font-poppins-regular text-lg text-white/80 max-w-2xl leading-relaxed mt-2">
           Minnesota&apos;s Department of Health oversees the Medical Cannabis
-          program. You must have a {}
+          program. You must have a{" "}
           <a
             href="https://mn.gov/ocm/dmc/patients/the-basics/qualifying-medical-condition.jsp"
             target="_blank"
@@ -101,14 +77,14 @@ export default function HowToCertify() {
             </p>
             <div className="flex flex-col gap-5">
               {PHYSICIAN_STEPS.map((s) => (
-                <Step key={s.num} {...s} />
+                <Step key={s.num} {...s} dark />
               ))}
-              <Link
+              <a
                 href="mailto:medical@sweetleavesnorthloop.com"
                 className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity text-center"
               >
                 Email Us
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -120,15 +96,16 @@ export default function HowToCertify() {
             </p>
             <div className="flex flex-col gap-5 flex-1">
               {REGISTRY_STEPS.map((s) => (
-                <Step key={s.num} {...s} />
+                <Step key={s.num} {...s} dark />
               ))}
-                            <Link
+              <a
                 href="https://cannabis.web.health.state.mn.us/login.xhtml"
                 target="_blank"
+                rel="noopener noreferrer"
                 className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity text-center mt-auto"
               >
                 Visit Patient Portal
-              </Link>
+              </a>
             </div>
           </div>
         </div>

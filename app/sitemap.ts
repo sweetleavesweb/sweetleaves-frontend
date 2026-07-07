@@ -20,6 +20,7 @@ const staticRoutes: Array<{ path: string } & RouteConfig> = [
   { path: "/shop-med/", changeFrequency: "weekly", priority: 1.0 },
   { path: "/certificate-of-analysis/", changeFrequency: "monthly", priority: 0.5 },
   { path: "/blog/", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/medical-card/", changeFrequency: "monthly", priority: 0.7 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
