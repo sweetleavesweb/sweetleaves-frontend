@@ -71,7 +71,7 @@ export default function HowToShop() {
         ))}
       </div>
       <Link
-        href="/about-us#find-us"
+        href="/about-us/#find-us"
         className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity text-center w-full max-w-[356px]"
       >
         Plan Your Visit

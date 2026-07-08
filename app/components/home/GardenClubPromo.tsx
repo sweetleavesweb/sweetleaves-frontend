@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function GardenClubPromo() {
   return (
     <section className="bg-dark-green rounded-[40px] flex flex-col gap-[5px] items-center justify-center px-10 py-9 min-h-[422px] md:min-h-[508px]">
-      <Link href="/loyalty">
+      <Link href="/loyalty/">
         <div className="relative w-[340px] md:w-[817px] h-[67px] md:h-[143px]">
           <Image
             src="/rewards/garden-club-text.png"
@@ -28,7 +28,7 @@ export default function GardenClubPromo() {
       </div>
 
       <Link
-        href="/loyalty#signup"
+        href="/loyalty/#signup"
         className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity mt-4 w-[256px] text-center"
       >
         Start Earning

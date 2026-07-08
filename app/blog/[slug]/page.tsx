@@ -67,7 +67,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         <div className="w-full flex flex-col md:flex-row items-center justify-between gap-[10px]">
           <Link
-            href="/blog"
+            href="/blog/"
             className="bg-light-gold text-dark-green font-poppins-semibold text-[16px] uppercase px-[25px] py-[14px] rounded-full hover:opacity-90 transition-opacity text-center w-full md:w-auto min-w-[250px]"
           >
             &lt; Back to Blog
