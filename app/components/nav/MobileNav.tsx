@@ -40,7 +40,7 @@ export default function MobileNav() {
   }
 
   return (
-    <div className="[@media(min-width:1100px)]:hidden sticky top-0 z-40">
+    <div className="[@media(min-width:1200px)]:hidden sticky top-0 z-40">
       <div className="relative bg-dark-green px-5 pt-4 pb-4">
         {/* Top row: logo + hamburger */}
         <div className="flex items-center justify-between">

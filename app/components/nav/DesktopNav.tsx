@@ -4,7 +4,7 @@ import { NAV_LINKS } from "./links";
 
 export default function DesktopNav() {
   return (
-    <div className="hidden [@media(min-width:1100px)]:block sticky top-0 z-40 px-6 pt-2 pb-4 relative">
+    <div className="hidden [@media(min-width:1200px)]:block sticky top-0 z-40 px-6 pt-2 pb-4 relative">
       <div
         className="absolute inset-x-0 top-0 h-1/2 backdrop-blur-xl pointer-events-none bg-sky-blue"
         style={{
