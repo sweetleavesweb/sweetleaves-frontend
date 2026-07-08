@@ -32,7 +32,7 @@ export default function HowToRenew() {
         <h2 className="font-poppins-bold text-3xl md:text-display text-dark-green leading-[0.95]">
           How to Renew
         </h2>
-        <p className="font-poppins-regular text-lg text-dark max-w-2xl leading-relaxed mt-2">
+        <p className="font-poppins-regular text-lg text-dark max-w-2xl leading-relaxed mt-3">
           Patients must re-enroll every three years. The state sends reminders 60 and 30 days
           before your enrollment expires — follow these steps to stay covered.
         </p>

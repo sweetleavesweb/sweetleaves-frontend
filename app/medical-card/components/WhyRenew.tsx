@@ -32,7 +32,7 @@ export default function WhyRenew() {
         <h2 className="font-poppins-bold text-3xl md:text-display text-white leading-[0.95]">
           Why Renew Your Certification in Minnesota?
         </h2>
-        <p className="font-poppins-regular text-lg text-white/80 max-w-2xl leading-relaxed mt-2">
+        <p className="font-poppins-regular text-lg text-white/80 max-w-2xl leading-relaxed mt-3">
           As a valued member of the Sweetleaves family, we want your experience to stay
           seamless when you renew. Renewing keeps all of these perks rolling — don&apos;t let
           them lapse, or you won&apos;t be able to pick up medical cannabis.

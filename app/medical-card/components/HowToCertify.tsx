@@ -50,7 +50,7 @@ export default function HowToCertify() {
         <h2 className="font-poppins-bold text-3xl md:text-display text-white leading-[0.95]">
           How to Get Certified
         </h2>
-        <p className="font-poppins-regular text-lg text-white/80 max-w-2xl leading-relaxed mt-2">
+        <p className="font-poppins-regular text-lg text-white/80 max-w-2xl leading-relaxed mt-3">
           Minnesota&apos;s Department of Health oversees the Medical Cannabis
           program. You must have a{" "}
           <a

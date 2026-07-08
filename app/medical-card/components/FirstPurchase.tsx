@@ -52,7 +52,7 @@ export default function FirstPurchase() {
         <h2 className="font-poppins-bold text-3xl md:text-display text-dark-green leading-[0.95]">
           Preparing for Your First Purchase
         </h2>
-        <p className="font-poppins-regular text-lg text-dark max-w-2xl leading-relaxed mt-2">
+        <p className="font-poppins-regular text-lg text-dark max-w-2xl leading-relaxed mt-3">
           Before your first visit to Sweetleaves as a medical patient, here&apos;s what to do.
         </p>
       </div>
