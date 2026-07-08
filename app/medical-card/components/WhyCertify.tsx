@@ -54,10 +54,10 @@ export default function WhyCertify() {
   return (
     <section className="bg-parchment border border-sage rounded-[40px] flex flex-col gap-7 px-6 py-8 md:px-10 md:py-10">
       <div className="flex flex-col gap-2 items-center text-center">
-        <h2 className="font-poppins-bold text-3xl md:text-display text-dark-green leading-[0.95]">
+        <h2 className="font-poppins-bold text-3xl md:text-display text-dark-green leading-10 md:leading-14">
           Benefits
         </h2>
-        <p className="font-poppins-regular text-lg text-dark max-w-2xl leading-relaxed mt-3">
+        <p className="font-poppins-regular text-lg text-dark max-w-2xl leading-relaxed mt-2">
           Having your medical cannabis certification opens the door to a variety of perks
           when you shop with us at{" "}
           <a

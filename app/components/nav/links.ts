@@ -12,7 +12,7 @@ const BRAND_SLUGS = ["sweetleaves", "rythm", "lakeside-cannabis-co", "nebula", "
 function toNavItems(entries: CatalogEntry[], slugs: string[], basePath: string) {
   return slugs.map((slug) => {
     const entry = entries.find((e) => e.slug === slug);
-    return { href: `${basePath}/${slug}`, label: entry?.navLabel ?? entry?.name ?? slug };
+    return { href: `${basePath}/${slug}/`, label: entry?.navLabel ?? entry?.name ?? slug };
   });
 }
 
@@ -22,7 +22,7 @@ export const NAV_LINKS: NavItem[] = [
     label: "Brands",
     items: [
       ...toNavItems(brands, BRAND_SLUGS, "/brands"),
-      { href: "/shop-now?dtche%5Bpath%5D=brands", label: "All Brands" },
+      { href: "/shop-now/?dtche%5Bpath%5D=brands", label: "All Brands" },
     ],
   },
   { label: "Resources", items: [

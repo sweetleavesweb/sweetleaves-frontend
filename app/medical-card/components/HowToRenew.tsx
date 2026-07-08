@@ -29,10 +29,10 @@ export default function HowToRenew() {
   return (
     <section className="bg-parchment border border-sage rounded-[40px] flex flex-col gap-8 px-6 py-8 md:px-10 md:py-10">
       <div className="flex flex-col gap-2 items-center text-center">
-        <h2 className="font-poppins-bold text-3xl md:text-display text-dark-green leading-[0.95]">
+        <h2 className="font-poppins-bold text-3xl md:text-display text-dark-green leading-10 md:leading-14">
           How to Renew
         </h2>
-        <p className="font-poppins-regular text-lg text-dark max-w-2xl leading-relaxed mt-3">
+        <p className="font-poppins-regular text-lg text-dark max-w-2xl leading-relaxed mt-2">
           Patients must re-enroll every three years. The state sends reminders 60 and 30 days
           before your enrollment expires — follow these steps to stay covered.
         </p>

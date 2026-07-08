@@ -17,10 +17,10 @@ export default function MedicalCardPage() {
   return (
     <div className="max-w-[1365px] mx-auto px-4 md:px-6 py-5 md:py-8 flex flex-col gap-5 lg:gap-[30px]">
       <section className="flex flex-col items-center justify-center px-10 py-8 md:py-10 gap-2">
-        <h1 className="font-poppins-bold text-[35px] md:text-[55px] text-dark-green text-center leading-[0.9]">
+        <h1 className="font-poppins-bold text-[35px] md:text-[55px] text-dark-green text-center leading-10 md:leading-14">
           Getting Your Medical Cannabis Card in Minnesota
         </h1>
-        <p className="font-poppins-regular text-lg text-dark max-w-2xl text-center leading-relaxed pt-3">
+        <p className="font-poppins-regular text-lg text-dark max-w-2xl text-center leading-relaxed pt-2">
           Your complete guide to certification, registry enrollment, and renewal —
           written for Minnesota patients shopping with Sweetleaves.
         </p>
