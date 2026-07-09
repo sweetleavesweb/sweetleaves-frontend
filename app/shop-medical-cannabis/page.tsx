@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import DutchieEmbed from "../components/DutchieEmbed";
 
 export const metadata: Metadata = {
-  title: "Shop Med",
-  alternates: { canonical: "/shop-med/" },
+  title: "Shop Medical Cannabis",
+  alternates: { canonical: "/shop-medical-cannabis/" },
 };
 
 const MED_SCRIPT_SRC =
@@ -12,6 +12,9 @@ const MED_SCRIPT_SRC =
 export default function ShopMedPage() {
   return (
     <div className="min-h-screen p-8">
+      <h1 className="font-poppins-bold text-[35px] md:text-[55px] text-dark-green leading-tight">
+        Medical Cannabis
+      </h1>
       <DutchieEmbed scriptSrc={MED_SCRIPT_SRC} />
     </div>
   );

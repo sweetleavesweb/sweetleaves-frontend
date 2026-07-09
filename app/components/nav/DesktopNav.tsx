@@ -60,13 +60,13 @@ export default function DesktopNav() {
 
         <div className="flex items-center gap-3">
           <Link
-            href="/shop-med/"
+            href="/shop-medical-cannabis/"
             className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity"
           >
             Shop Med
           </Link>
           <Link
-            href="/shop-now/"
+            href="/shop-recreational-cannabis/"
             className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity"
           >
             Shop Rec

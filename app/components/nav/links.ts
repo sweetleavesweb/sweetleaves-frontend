@@ -22,7 +22,7 @@ export const NAV_LINKS: NavItem[] = [
     label: "Brands",
     items: [
       ...toNavItems(brands, BRAND_SLUGS, "/brands"),
-      { href: "/shop-now/?dtche%5Bpath%5D=brands", label: "All Brands" },
+      { href: "/shop-recreational-cannabis/?dtche%5Bpath%5D=brands", label: "All Brands" },
     ],
   },
   { label: "Resources", items: [

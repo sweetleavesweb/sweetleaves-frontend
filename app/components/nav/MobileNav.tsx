@@ -80,14 +80,14 @@ export default function MobileNav() {
         {/* Shop buttons — always visible */}
         <div className="mt-4 flex gap-3">
           <Link
-            href="/shop-med/"
+            href="/shop-medical-cannabis/"
             onClick={close}
             className="flex-1 flex items-center justify-center bg-light-gold text-dark-green font-poppins-semibold uppercase text-base py-3.5 rounded-full hover:opacity-90 transition-opacity"
           >
             Shop Med
           </Link>
           <Link
-            href="/shop-now/"
+            href="/shop-recreational-cannabis/"
             onClick={close}
             className="flex-1 flex items-center justify-center bg-light-gold text-dark-green font-poppins-semibold uppercase text-base py-3.5 rounded-full hover:opacity-90 transition-opacity"
           >

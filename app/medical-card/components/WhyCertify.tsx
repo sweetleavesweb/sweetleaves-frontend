@@ -61,7 +61,7 @@ export default function WhyCertify() {
           Having your medical cannabis certification opens the door to a variety of perks
           when you shop with us at{" "}
           <a
-            href="/shop-med/"
+            href="/shop-medical-cannabis/"
             className="text-orange-glow underline hover:opacity-80 transition-opacity"
           >
             Sweetleaves
