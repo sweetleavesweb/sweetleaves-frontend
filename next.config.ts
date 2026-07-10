@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
     ],
   },
   async redirects() {
-    const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sweetleavesnorthloop.com";
+    const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sweetleaves.co";
     return [
       { source: "/in-store-shopping/", destination: `${base}/`, permanent: true },
       { source: "/press/", destination: `${base}/blog/`, permanent: true },

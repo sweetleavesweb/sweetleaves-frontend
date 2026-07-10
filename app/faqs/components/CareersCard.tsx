@@ -20,7 +20,7 @@ export default function CareersCard() {
           Careers page.
         </p>
         <Link
-          href="https://sweetleavesnorthloop.com/careers/"
+          href={(process.env.NEXT_PUBLIC_SITE_URL ?? "https://sweetleaves.co") + "/careers/"}
           className="bg-light-gold rounded-full px-[25px] py-[14px] font-poppins-semibold text-[16px] text-dark-green uppercase text-center"
         >
           See Open Positions
