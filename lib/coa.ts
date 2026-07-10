@@ -73,6 +73,7 @@ export async function getCoaBatches(): Promise<CoaBatch[]> {
     {},
     { revalidateSeconds: COA_REVALIDATE_SECONDS }
   );
+  if (!data) return [];
 
   const nodes: any[] = data?.coaBatches?.nodes ?? [];
   return nodes.map((node: any) => ({
