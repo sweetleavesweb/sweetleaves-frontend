@@ -140,12 +140,12 @@ export default function AgeGate({
                   height={150}
                   className="mx-auto mb-6"
                 />
-                <h1
+                <p
                   id="age-gate-title"
                   className="font-poppins text-display text-center font-bold text-light-gold"
                 >
                   Are you 21 or older?
-                </h1>
+                </p>
                 <div className="mt-6 flex flex-col sm:flex-row gap-3">
                   <button
                     ref={yesButtonRef}
