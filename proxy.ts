@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const canonicalUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   if (!canonicalUrl) return;
 
   const host = request.headers.get("host") || "";
