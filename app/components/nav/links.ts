@@ -12,7 +12,7 @@ const BRAND_SLUGS = ["sweetleaves", "rythm", "lakeside-cannabis-co", "nebula", "
 function toNavItems(entries: CatalogEntry[], slugs: string[], basePath: string) {
   return slugs.map((slug) => {
     const entry = entries.find((e) => e.slug === slug);
-    return { href: `${basePath}/${slug}`, label: entry?.navLabel ?? entry?.name ?? slug };
+    return { href: `${basePath}/${slug}/`, label: entry?.navLabel ?? entry?.name ?? slug };
   });
 }
 
@@ -22,11 +22,14 @@ export const NAV_LINKS: NavItem[] = [
     label: "Brands",
     items: [
       ...toNavItems(brands, BRAND_SLUGS, "/brands"),
-      { href: "/shop-now?dtche%5Bpath%5D=brands", label: "All Brands" },
+      { href: "/shop-recreational-cannabis/?dtche%5Bpath%5D=brands", label: "All Brands" },
     ],
   },
-  { href: "/loyalty", label: "Rewards" },
-  { href: "/blog", label: "Blog" },
-  { href: "/about-us", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { label: "Resources", items: [
+    { href: "/about-us/", label: "About" },
+    { href: "/blog/", label: "Blog" },
+    { href: "/medical-card/", label: "How to get your Medical Card in MN" }
+  ]},
+  { href: "/loyalty/", label: "Rewards" },
+  { href: "/contact/", label: "Contact" },
 ];

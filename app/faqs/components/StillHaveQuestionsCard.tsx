@@ -11,7 +11,7 @@ export default function StillHaveQuestionsCard() {
         <p className="font-poppins-regular text-[18px] text-dark-green">
           Stop by, call us at 612-688-9333, or{" "}
           <a
-            href="https://sweetleavesnorthloop.com/contact/"
+            href={(process.env.NEXT_PUBLIC_SITE_URL ?? "https://sweetleaves.co") + "contact/"}
             className="underline"
           >
             send us a message
@@ -19,7 +19,7 @@ export default function StillHaveQuestionsCard() {
           . We&apos;re here to help.
         </p>
         <Link
-          href="https://sweetleavesnorthloop.com/contact/"
+          href={(process.env.NEXT_PUBLIC_SITE_URL ?? "https://sweetleaves.co") + "contact/"}
           className="bg-light-gold rounded-full px-[25px] py-[14px] font-poppins-semibold text-[16px] text-dark-green uppercase text-center"
         >
           Contact Us

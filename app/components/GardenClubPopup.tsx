@@ -92,7 +92,7 @@ export default function GardenClubPopup() {
         </p>
 
         <Link
-          href="/loyalty#signup"
+          href="/loyalty/#signup"
           onClick={handleDismiss}
           className="block w-full bg-light-gold text-dark-green font-semibold uppercase text-sm text-center rounded-full py-3 hover:opacity-90 transition-opacity"
         >

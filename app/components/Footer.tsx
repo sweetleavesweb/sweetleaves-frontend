@@ -36,13 +36,14 @@ export default function Footer() {
             Shop
           </p>
           <nav className="flex flex-col items-center md:items-start">
-            <Link href="/products/flower" className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left">Flower</Link>
-            <Link href="/products/pre-rolls" className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left">Pre-Rolls</Link>
-            <Link href="/products/disposable-vapes-and-carts" className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left">Vaporizers</Link>
-            <Link href="/products/edibles" className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left">Edibles</Link>
-            <Link href="/products/cannabis-beverages" className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left">THC Drinks</Link>
-            <Link href="/products/cbd" className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left">CBD</Link>
-            <Link href="/products/concentrates" className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left">Concentrates</Link>
+            <Link href="/products/flower/" className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left">Flower</Link>
+            <Link href="/products/pre-rolls/" className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left">Pre-Rolls</Link>
+            <Link href="/products/disposable-vapes-and-carts/" className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left">Vaporizers</Link>
+            <Link href="/products/edibles/" className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left">Edibles</Link>
+            <Link href="/products/cannabis-beverages/" className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left">THC Drinks</Link>
+            <Link href="/products/cbd/" className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left">CBD</Link>
+            <Link href="/products/concentrates/" className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left">Concentrates</Link>
+            <Link href="/shop-medical-cannabis/" className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left">Medical</Link>
           </nav>
         </div>
 
@@ -53,13 +54,13 @@ export default function Footer() {
           </p>
           <nav className="flex flex-col items-center md:items-start">
             <Link
-              href="/loyalty"
+              href="/loyalty/"
               className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left"
             >
               Rewards
             </Link>
             <Link
-              href="/blog"
+              href="/blog/"
               className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left"
             >
               Blog
@@ -71,23 +72,29 @@ export default function Footer() {
               FAQ
             </Link>
             <Link
-              href="/events"
+              href="/events/"
               className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left"
             >
               Events
             </Link>
             <Link
-              href="/contact"
+              href="/contact/"
               className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left"
             >
               Contact
             </Link>
             <Link
-              href="/certificate-of-analysis"
+              href="/certificate-of-analysis/"
               className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left"
             >
               COAs
             </Link>
+            <Link
+              href="/medical-card/"
+              className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left"
+            >
+              Medical Card
+            </Link>            
           </nav>
         </div>
 
@@ -203,7 +210,7 @@ export default function Footer() {
               </a>
             </div>
             <Link
-              href="/loyalty"
+              href="/loyalty/"
               className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity text-center w-full md:w-auto max-w-[350px]"
             >
               Sign Up For Rewards

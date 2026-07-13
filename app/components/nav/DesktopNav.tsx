@@ -4,7 +4,7 @@ import { NAV_LINKS } from "./links";
 
 export default function DesktopNav() {
   return (
-    <div className="hidden [@media(min-width:1100px)]:block sticky top-0 z-40 px-6 pt-2 pb-4 relative">
+    <div className="hidden [@media(min-width:1200px)]:block sticky top-0 z-40 px-6 pt-2 pb-4 relative">
       <div
         className="absolute inset-x-0 top-0 h-1/2 backdrop-blur-xl pointer-events-none bg-sky-blue"
         style={{
@@ -58,12 +58,18 @@ export default function DesktopNav() {
           )}
         </div>
 
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-3">
           <Link
-            href="/shop-now/"
+            href="/shop-medical-cannabis/"
             className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity"
           >
-            Shop Now
+            Shop Med
+          </Link>
+          <Link
+            href="/shop-recreational-cannabis/"
+            className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity"
+          >
+            Shop Rec
           </Link>
         </div>
       </nav>

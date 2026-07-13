@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { brands } from "@/lib/brands";
 import { products } from "@/lib/products";
 
-const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sweetleavesnorthloop.com";
+const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sweetleaves.co";
 
 type RouteConfig = {
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
@@ -16,9 +16,11 @@ const staticRoutes: Array<{ path: string } & RouteConfig> = [
   { path: "/events/", changeFrequency: "monthly", priority: 0.5 },
   { path: "/faqs/", changeFrequency: "monthly", priority: 0.5 },
   { path: "/loyalty/", changeFrequency: "monthly", priority: 0.5 },
-  { path: "/shop-now/", changeFrequency: "weekly", priority: 1.0 },
+  { path: "/shop-recreational-cannabis/", changeFrequency: "weekly", priority: 1.0 },
+  { path: "/shop-medical-cannabis/", changeFrequency: "weekly", priority: 1.0 },
   { path: "/certificate-of-analysis/", changeFrequency: "monthly", priority: 0.5 },
   { path: "/blog/", changeFrequency: "weekly", priority: 0.8 },
+  { path: "/medical-card/", changeFrequency: "monthly", priority: 0.7 },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

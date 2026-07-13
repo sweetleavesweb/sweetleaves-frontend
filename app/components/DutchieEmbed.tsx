@@ -4,11 +4,12 @@ import { useEffect, useRef } from "react";
 
 interface Props {
   dutchieParams?: Record<string, string>;
+  scriptSrc?: string;
 }
 
-const SCRIPT_SRC = "https://dutchie.com/api/v2/embedded-menu/65ae80f7dbecc7000934725c.js";
+const REC_SCRIPT_SRC = "https://dutchie.com/api/v2/embedded-menu/65ae80f7dbecc7000934725c.js";
 
-export default function DutchieEmbed({ dutchieParams }: Props) {
+export default function DutchieEmbed({ dutchieParams, scriptSrc }: Props) {
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -33,7 +34,7 @@ export default function DutchieEmbed({ dutchieParams }: Props) {
 
     const s = document.createElement("script");
     s.id = "dutchie--embed__script";
-    s.src = SCRIPT_SRC;
+    s.src = scriptSrc ?? REC_SCRIPT_SRC;
     s.async = true;
     s.defer = true;
     container.appendChild(s);
@@ -47,7 +48,7 @@ export default function DutchieEmbed({ dutchieParams }: Props) {
       }
       window.history.replaceState(null, "", cleanUrl.toString());
     };
-  }, [dutchieParams]);
+  }, [dutchieParams, scriptSrc]);
 
   return <div ref={rootRef} />;
 }

@@ -23,7 +23,7 @@ export default async function CoaPage() {
         <div className="text-[13px] tracking-[0.14em] uppercase text-dark-sage font-semibold">
           Lab Results
         </div>
-        <h1 className="font-poppins-bold text-[44px] sm:text-[55px] lg:text-[66px] text-dark-green leading-[0.95] mt-[10px] mb-5">
+        <h1 className="font-poppins-bold text-[44px] sm:text-[55px] lg:text-[66px] text-dark-green mt-[10px] mb-5">
           Certificates of Analysis
         </h1>
         <p className="text-[16px] leading-[1.55] text-dark-sage max-w-[680px] mx-auto mb-[30px]">

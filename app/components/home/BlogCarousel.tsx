@@ -84,7 +84,7 @@ export default function BlogCarousel({ posts }: Props) {
         </button>
 
         <Link
-          href="/blog"
+          href="/blog/"
           className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-5 rounded-full hover:opacity-90 transition-opacity text-center flex-1 max-w-[404px]"
         >
           Browse Our Blog

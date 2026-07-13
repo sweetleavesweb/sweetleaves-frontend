@@ -1,5 +1,5 @@
 import type { CatalogEntry } from "@/lib/catalog";
-import DutchieEmbed from "../shop-now/components/DutchieEmbed";
+import DutchieEmbed from "./DutchieEmbed";
 
 interface Props {
   entry: CatalogEntry;

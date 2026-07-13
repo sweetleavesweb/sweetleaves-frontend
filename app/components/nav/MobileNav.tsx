@@ -40,7 +40,7 @@ export default function MobileNav() {
   }
 
   return (
-    <div className="[@media(min-width:1100px)]:hidden sticky top-0 z-40">
+    <div className="[@media(min-width:1200px)]:hidden sticky top-0 z-40">
       <div className="relative bg-dark-green px-5 pt-4 pb-4">
         {/* Top row: logo + hamburger */}
         <div className="flex items-center justify-between">
@@ -77,14 +77,23 @@ export default function MobileNav() {
           </button>
         </div>
 
-        {/* Shop Now button — always visible */}
-        <Link
-          href="/shop-now/"
-          onClick={close}
-          className="mt-4 flex items-center justify-center bg-light-gold text-dark-green font-poppins-semibold uppercase text-base py-3.5 rounded-full hover:opacity-90 transition-opacity w-full"
-        >
-          Shop Now
-        </Link>
+        {/* Shop buttons — always visible */}
+        <div className="mt-4 flex gap-3">
+          <Link
+            href="/shop-medical-cannabis/"
+            onClick={close}
+            className="flex-1 flex items-center justify-center bg-light-gold text-dark-green font-poppins-semibold uppercase text-base py-3.5 rounded-full hover:opacity-90 transition-opacity"
+          >
+            Shop Med
+          </Link>
+          <Link
+            href="/shop-recreational-cannabis/"
+            onClick={close}
+            className="flex-1 flex items-center justify-center bg-light-gold text-dark-green font-poppins-semibold uppercase text-base py-3.5 rounded-full hover:opacity-90 transition-opacity"
+          >
+            Shop Rec
+          </Link>
+        </div>
 
         {/* Expanded menu */}
         <div
