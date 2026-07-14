@@ -1,4 +1,6 @@
 const AIQ_BASE_URL = "https://lab.alpineiq.com";
+const AIQ_UID = "3585";
+const MAX_ORDERS = 50;
 
 export type Contact = { phone: string } | { email: string };
 
@@ -10,10 +12,33 @@ export interface Reward {
   expiration: number;
 }
 
+export interface OrderItem {
+  name: string;
+  brand: string;
+  quantity: number;
+  price: number;
+}
+
+export interface Order {
+  id: string;
+  date: number;
+  store: string;
+  total: number;
+  items: OrderItem[];
+}
+
+export interface PassLinks {
+  apple: string;
+  google: string;
+}
+
 export interface Wallet {
   points: number;
   hidePoints: boolean;
   rewards: Reward[];
+  orders: Order[];
+  referralUrl: string;
+  passLinks: PassLinks;
 }
 
 export class WalletApiError extends Error {
@@ -66,6 +91,88 @@ interface AiqDiscountTemplate {
   expiration?: number;
 }
 
+interface AiqOrderLineItem {
+  name?: string;
+  brand?: string;
+  quantity?: number;
+  totalPrice?: number;
+  timestamp?: number;
+  storeName?: string;
+}
+
+// The orders endpoint returns a flat list of line items; items purchased
+// together share the same timestamp, which is the only grouping key available.
+async function fetchOrders(contactID: string): Promise<Order[]> {
+  const apiKey = process.env.ALPINEIQ_API_KEY;
+  const res = await fetch(
+    `${AIQ_BASE_URL}/api/v1.1/contact/orders/${AIQ_UID}/${contactID}`,
+    { headers: { "X-APIKEY": apiKey ?? "" }, cache: "no-store" },
+  );
+  if (!res.ok) {
+    throw new WalletApiError(`Alpine IQ orders fetch failed (${res.status}).`, "upstream");
+  }
+
+  const payload = await res.json();
+  const lineItems: AiqOrderLineItem[] = Array.isArray(payload?.data) ? payload.data : [];
+
+  const visits = new Map<number, Order>();
+  for (const item of lineItems) {
+    const date = item.timestamp ?? 0;
+    const order = visits.get(date) ?? {
+      id: String(date),
+      date,
+      store: item.storeName ?? "",
+      total: 0,
+      items: [],
+    };
+    const price = item.totalPrice ?? 0;
+    order.items.push({
+      name: item.name ?? "Unknown item",
+      brand: item.brand ?? "",
+      quantity: item.quantity ?? 1,
+      price,
+    });
+    order.total += price;
+    visits.set(date, order);
+  }
+
+  return [...visits.values()].sort((a, b) => b.date - a.date).slice(0, MAX_ORDERS);
+}
+
+async function fetchPassLinks(contactID: string): Promise<PassLinks> {
+  const apiKey = process.env.ALPINEIQ_API_KEY;
+  const res = await fetch(
+    `${AIQ_BASE_URL}/api/v2/walletPassDownloadLinks/${contactID}`,
+    { headers: { "X-APIKEY": apiKey ?? "" }, cache: "no-store" },
+  );
+  if (!res.ok) {
+    throw new WalletApiError(`Alpine IQ pass links fetch failed (${res.status}).`, "upstream");
+  }
+  const payload = await res.json();
+  return {
+    apple: typeof payload?.data?.apple === "string" ? payload.data.apple : "",
+    google: typeof payload?.data?.google === "string" ? payload.data.google : "",
+  };
+}
+
+async function fetchReferralUrl(contactID: string): Promise<string> {
+  const apiKey = process.env.ALPINEIQ_API_KEY;
+  const res = await fetch(`${AIQ_BASE_URL}/api/v1.1/piis/${AIQ_UID}/${contactID}`, {
+    headers: { "X-APIKEY": apiKey ?? "" },
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    throw new WalletApiError(`Alpine IQ contact fetch failed (${res.status}).`, "upstream");
+  }
+  const payload = await res.json();
+  const referCode = payload?.data?.referCode;
+  if (typeof referCode === "string" && referCode) {
+    return `${AIQ_BASE_URL}/joinMembers/${AIQ_UID}?refCode=${encodeURIComponent(referCode)}`;
+  }
+  const referLink = payload?.data?.referLink;
+  return typeof referLink === "string" ? referLink : "";
+}
+
 export async function fetchWallet(contact: Contact, code: string): Promise<Wallet> {
   const res = await aiqPost("/api/v2/view/contact/wallet", { ...contact, code });
   if (res.status >= 400 && res.status < 500) {
@@ -92,9 +199,23 @@ export async function fetchWallet(contact: Contact, code: string): Promise<Walle
     }))
     .sort((a, b) => a.pointsCost - b.pointsCost);
 
+  let orders: Order[] = [];
+  let referralUrl = "";
+  let passLinks: PassLinks = { apple: "", google: "" };
+  if (typeof data?.contactID === "string" && data.contactID) {
+    [orders, referralUrl, passLinks] = await Promise.all([
+      fetchOrders(data.contactID).catch(() => []),
+      fetchReferralUrl(data.contactID).catch(() => ""),
+      fetchPassLinks(data.contactID).catch(() => ({ apple: "", google: "" })),
+    ]);
+  }
+
   return {
     points: typeof data?.loyaltyPoints === "number" ? data.loyaltyPoints : 0,
     hidePoints: Boolean(data?.hidePointsInWallet),
     rewards,
+    orders,
+    referralUrl,
+    passLinks,
   };
 }

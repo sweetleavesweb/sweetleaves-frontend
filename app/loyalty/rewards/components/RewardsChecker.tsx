@@ -116,6 +116,15 @@ export default function RewardsChecker() {
           <button type="submit" className={buttonClasses} disabled={submitting}>
             {submitting ? "Sending..." : "Send My Code"}
           </button>
+          <p className="font-poppins-regular text-base text-dark-green text-center">
+            Not a member yet?{" "}
+            <Link
+              href="/loyalty/#signup"
+              className="font-poppins-semibold underline hover:opacity-70"
+            >
+              Sign up here
+            </Link>
+          </p>
         </form>
       ) : (
         <form
