@@ -105,8 +105,6 @@ export default function RewardsChecker() {
           <input
             id="loyalty-contact"
             type="text"
-            inputMode="tel"
-            autoComplete="tel"
             placeholder="Phone number or email"
             value={contact}
             onChange={(e) => setContact(e.target.value)}
