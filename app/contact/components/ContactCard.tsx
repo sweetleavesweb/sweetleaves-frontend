@@ -40,8 +40,8 @@ export default function ContactCard() {
         {/* Email */}
         <div className="font-poppins-regular text-lg text-white text-center lg:text-left">
           <p className="font-poppins-bold">Send An Email</p>
-          <a href="mailto:info@sweetleavesnorthloop.com" className="hover:underline break-all">
-            info@sweetleavesnorthloop.com
+          <a href="mailto:info@sweetleaves.co" className="hover:underline break-all">
+            info@sweetleaves.co
           </a>
         </div>
 
