@@ -1,21 +1,14 @@
 "use client";
 
-<<<<<<< Updated upstream
-import { useState } from "react";
-=======
 import { useEffect, useState } from "react";
->>>>>>> Stashed changes
 import Link from "next/link";
 import type { Wallet } from "@/lib/alpineiq/wallet";
 import WalletView from "./WalletView";
 
 type Step = "enter-contact" | "enter-code" | "view-wallet";
 
-<<<<<<< Updated upstream
-=======
 const WALLET_STORAGE_KEY = "sl-rewards-wallet";
 
->>>>>>> Stashed changes
 const inputClasses =
   "placeholder:opacity-100 focus:placeholder:opacity-0 w-full bg-white border border-sage rounded-full px-6 py-3.5 font-poppins-regular text-lg text-dark text-center focus:outline-none focus:border-dark-green";
 
@@ -31,8 +24,6 @@ export default function RewardsChecker() {
   const [notFound, setNotFound] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-<<<<<<< Updated upstream
-=======
   // Rehydrate a previously verified wallet so navigation/reload within the
   // session skips re-verification. sessionStorage clears when the tab closes.
   useEffect(() => {
@@ -46,7 +37,6 @@ export default function RewardsChecker() {
     }
   }, []);
 
->>>>>>> Stashed changes
   async function sendCodeToContact() {
     setSubmitting(true);
     setError(null);
@@ -87,10 +77,7 @@ export default function RewardsChecker() {
         return;
       }
       setWallet(data);
-<<<<<<< Updated upstream
-=======
       sessionStorage.setItem(WALLET_STORAGE_KEY, JSON.stringify(data));
->>>>>>> Stashed changes
       setStep("view-wallet");
     } catch {
       setError("Something went wrong. Please try again.");
@@ -100,10 +87,7 @@ export default function RewardsChecker() {
   }
 
   function reset() {
-<<<<<<< Updated upstream
-=======
     sessionStorage.removeItem(WALLET_STORAGE_KEY);
->>>>>>> Stashed changes
     setStep("enter-contact");
     setContact("");
     setCode("");
