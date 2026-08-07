@@ -73,7 +73,7 @@ export default function GardenClubPopup() {
           type="button"
           onClick={handleDismiss}
           aria-label="Close"
-          className="absolute top-4 right-4 text-white text-xl leading-none hover:opacity-70 transition-opacity"
+          className="absolute top-4 left-4 text-white text-xl leading-none hover:opacity-70 transition-opacity"
         >
           X
         </button>
@@ -83,7 +83,7 @@ export default function GardenClubPopup() {
           alt="Garden Club"
           width={817}
           height={143}
-          className="w-full h-auto mb-4 -ml-2 mt-2"
+          className="w-full h-auto mb-4 ml-2 mt-4"
         />
 
         <p className="text-white text-base mb-6 text-pretty">
