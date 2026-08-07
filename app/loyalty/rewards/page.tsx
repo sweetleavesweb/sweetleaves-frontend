@@ -7,7 +7,10 @@ export const metadata: Metadata = {
   description:
     "Check your Sweetleaves Garden Club points balance and see which rewards you can redeem on your next visit.",
   alternates: { canonical: "/loyalty/rewards/" },
+<<<<<<< Updated upstream
   robots: { index: false, follow: true },
+=======
+>>>>>>> Stashed changes
 };
 
 export default function CheckRewardsPage() {
