@@ -5,16 +5,16 @@ import Link from "next/link";
 import type { Wallet } from "@/lib/alpineiq/wallet";
 import WalletView from "./WalletView";
 
-type Step = "contact" | "code" | "wallet";
+type Step = "enter-contact" | "enter-code" | "view-wallet";
 
 const inputClasses =
-  "w-full bg-white border border-sage rounded-full px-6 py-3.5 font-poppins-regular text-lg text-dark text-center focus:outline-none focus:border-dark-green";
+  "placeholder:opacity-100 focus:placeholder:opacity-0 w-full bg-white border border-sage rounded-full px-6 py-3.5 font-poppins-regular text-lg text-dark text-center focus:outline-none focus:border-dark-green";
 
 const buttonClasses =
   "w-full bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity disabled:opacity-50";
 
 export default function RewardsChecker() {
-  const [step, setStep] = useState<Step>("contact");
+  const [step, setStep] = useState<Step>("enter-contact");
   const [contact, setContact] = useState("");
   const [code, setCode] = useState("");
   const [wallet, setWallet] = useState<Wallet | null>(null);
@@ -22,7 +22,7 @@ export default function RewardsChecker() {
   const [notFound, setNotFound] = useState(false);
   const [submitting, setSubmitting] = useState(false);
 
-  async function sendCode() {
+  async function sendCodeToContact() {
     setSubmitting(true);
     setError(null);
     setNotFound(false);
@@ -39,7 +39,7 @@ export default function RewardsChecker() {
         return;
       }
       setCode("");
-      setStep("code");
+      setStep("enter-code");
     } catch {
       setError("Something went wrong. Please try again.");
     } finally {
@@ -47,7 +47,7 @@ export default function RewardsChecker() {
     }
   }
 
-  async function loadWallet() {
+  async function submitCodeAndLoadWallet() {
     setSubmitting(true);
     setError(null);
     try {
@@ -62,7 +62,7 @@ export default function RewardsChecker() {
         return;
       }
       setWallet(data);
-      setStep("wallet");
+      setStep("view-wallet");
     } catch {
       setError("Something went wrong. Please try again.");
     } finally {
@@ -71,7 +71,7 @@ export default function RewardsChecker() {
   }
 
   function reset() {
-    setStep("contact");
+    setStep("enter-contact");
     setContact("");
     setCode("");
     setWallet(null);
@@ -79,18 +79,18 @@ export default function RewardsChecker() {
     setNotFound(false);
   }
 
-  if (step === "wallet" && wallet) {
+  if (step === "view-wallet" && wallet) {
     return <WalletView wallet={wallet} onReset={reset} />;
   }
 
   return (
     <section className="bg-parchment border border-sage rounded-[50px] px-6 py-10 md:px-12 md:py-12 flex flex-col items-center gap-5">
-      {step === "contact" ? (
+      {step === "enter-contact" ? (
         <form
           className="w-full max-w-md flex flex-col items-center gap-4"
           onSubmit={(e) => {
             e.preventDefault();
-            sendCode();
+            sendCodeToContact();
           }}
         >
           <label
@@ -129,7 +129,7 @@ export default function RewardsChecker() {
           className="w-full max-w-md flex flex-col items-center gap-4"
           onSubmit={(e) => {
             e.preventDefault();
-            loadWallet();
+            submitCodeAndLoadWallet();
           }}
         >
           <label
@@ -158,7 +158,7 @@ export default function RewardsChecker() {
           <div className="flex gap-6">
             <button
               type="button"
-              onClick={sendCode}
+              onClick={sendCodeToContact}
               disabled={submitting}
               className="font-poppins-semibold text-base text-dark-green underline hover:opacity-70"
             >

@@ -1,3 +1,4 @@
+// endpoint used when a user provides phone number or email to log into their rewards account using a verification code
 import { NextResponse } from "next/server";
 import { normalizeContact, sendVerificationCode, WalletApiError } from "@/lib/alpineiq/wallet";
 

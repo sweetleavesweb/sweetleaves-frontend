@@ -41,6 +41,23 @@ export interface Wallet {
   passLinks: PassLinks;
 }
 
+interface AiqDiscountTemplate {
+  id?: string;
+  name?: string;
+  pointsDeduction?: number;
+  available?: boolean;
+  expiration?: number;
+}
+
+interface AiqOrderLineItem {
+  name?: string;
+  brand?: string;
+  quantity?: number;
+  totalPrice?: number;
+  timestamp?: number;
+  storeName?: string;
+}
+
 export class WalletApiError extends Error {
   constructor(
     message: string,
@@ -50,11 +67,13 @@ export class WalletApiError extends Error {
   }
 }
 
+// normalizeContact turns "raw" into either a trimmed email, phone number, or null if invalid entry
 export function normalizeContact(raw: string): Contact | null {
   const trimmed = raw.trim();
   if (trimmed.includes("@")) {
     return /^\S+@\S+\.\S+$/.test(trimmed) ? { email: trimmed.toLowerCase() } : null;
   }
+  // remove all nondigits
   const digits = trimmed.replace(/\D/g, "");
   const phone = digits.length === 11 && digits.startsWith("1") ? digits.slice(1) : digits;
   return phone.length === 10 ? { phone } : null;
@@ -73,6 +92,21 @@ async function aiqPost(path: string, body: Record<string, string>): Promise<Resp
   });
 }
 
+async function aiqGet(path: string, label: string) {
+  const apiKey = process.env.ALPINEIQ_API_KEY;
+  if (!apiKey) {
+    throw new WalletApiError("Alpine IQ API key is not configured.", "upstream");
+  }
+  const res = await fetch(`${AIQ_BASE_URL}${path}`, {
+    headers: { "X-APIKEY": apiKey },
+    cache: "no-store",
+  });
+  if (!res.ok) {
+    throw new WalletApiError(`Alpine IQ ${label} fetch failed (${res.status}).`, "upstream");
+  }
+  return res.json();
+}
+
 export async function sendVerificationCode(contact: Contact): Promise<void> {
   const res = await aiqPost("/api/v2/verify/contact/wallet", { ...contact });
   if (res.status === 400 || res.status === 404) {
@@ -83,36 +117,13 @@ export async function sendVerificationCode(contact: Contact): Promise<void> {
   }
 }
 
-interface AiqDiscountTemplate {
-  id?: string;
-  name?: string;
-  pointsDeduction?: number;
-  available?: boolean;
-  expiration?: number;
-}
-
-interface AiqOrderLineItem {
-  name?: string;
-  brand?: string;
-  quantity?: number;
-  totalPrice?: number;
-  timestamp?: number;
-  storeName?: string;
-}
-
 // The orders endpoint returns a flat list of line items; items purchased
 // together share the same timestamp, which is the only grouping key available.
 async function fetchOrders(contactID: string): Promise<Order[]> {
-  const apiKey = process.env.ALPINEIQ_API_KEY;
-  const res = await fetch(
-    `${AIQ_BASE_URL}/api/v1.1/contact/orders/${AIQ_UID}/${contactID}`,
-    { headers: { "X-APIKEY": apiKey ?? "" }, cache: "no-store" },
+  const payload = await aiqGet(
+    `/api/v1.1/contact/orders/${AIQ_UID}/${contactID}`,
+    "orders",
   );
-  if (!res.ok) {
-    throw new WalletApiError(`Alpine IQ orders fetch failed (${res.status}).`, "upstream");
-  }
-
-  const payload = await res.json();
   const lineItems: AiqOrderLineItem[] = Array.isArray(payload?.data) ? payload.data : [];
 
   const visits = new Map<number, Order>();
@@ -140,15 +151,10 @@ async function fetchOrders(contactID: string): Promise<Order[]> {
 }
 
 async function fetchPassLinks(contactID: string): Promise<PassLinks> {
-  const apiKey = process.env.ALPINEIQ_API_KEY;
-  const res = await fetch(
-    `${AIQ_BASE_URL}/api/v2/walletPassDownloadLinks/${contactID}`,
-    { headers: { "X-APIKEY": apiKey ?? "" }, cache: "no-store" },
+  const payload = await aiqGet(
+    `/api/v2/walletPassDownloadLinks/${contactID}`,
+    "pass links",
   );
-  if (!res.ok) {
-    throw new WalletApiError(`Alpine IQ pass links fetch failed (${res.status}).`, "upstream");
-  }
-  const payload = await res.json();
   return {
     apple: typeof payload?.data?.apple === "string" ? payload.data.apple : "",
     google: typeof payload?.data?.google === "string" ? payload.data.google : "",
@@ -156,15 +162,7 @@ async function fetchPassLinks(contactID: string): Promise<PassLinks> {
 }
 
 async function fetchReferralUrl(contactID: string): Promise<string> {
-  const apiKey = process.env.ALPINEIQ_API_KEY;
-  const res = await fetch(`${AIQ_BASE_URL}/api/v1.1/piis/${AIQ_UID}/${contactID}`, {
-    headers: { "X-APIKEY": apiKey ?? "" },
-    cache: "no-store",
-  });
-  if (!res.ok) {
-    throw new WalletApiError(`Alpine IQ contact fetch failed (${res.status}).`, "upstream");
-  }
-  const payload = await res.json();
+  const payload = await aiqGet(`/api/v1.1/piis/${AIQ_UID}/${contactID}`, "contact");
   const referCode = payload?.data?.referCode;
   if (typeof referCode === "string" && referCode) {
     return `${AIQ_BASE_URL}/joinMembers/${AIQ_UID}?refCode=${encodeURIComponent(referCode)}`;

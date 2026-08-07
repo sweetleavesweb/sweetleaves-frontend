@@ -10,7 +10,7 @@ export default function TabButton({ active, onClick, children }: Props) {
       type="button"
       onClick={onClick}
       className={`flex-1 rounded-full px-6 py-2.5 font-poppins-semibold uppercase text-sm transition-colors ${
-        active ? "bg-light-gold text-dark-green" : "text-white hover:bg-white/10"
+        active ? "bg-light-gold text-dark-green" : "text-white"
       }`}
     >
       {children}

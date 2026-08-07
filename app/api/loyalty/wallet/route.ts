@@ -1,3 +1,6 @@
+// after the user requests a verification code with /api/loyalty/verify, they provide the code + id (email or phone number)
+// and AIQ fetches their "wallet"
+
 import { NextResponse } from "next/server";
 import { fetchWallet, normalizeContact, WalletApiError } from "@/lib/alpineiq/wallet";
 

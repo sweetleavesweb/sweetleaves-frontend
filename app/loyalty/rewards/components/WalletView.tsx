@@ -63,19 +63,14 @@ export default function WalletView({ wallet, onReset }: Props) {
           {wallet.referralUrl && (
             <button
               type="button"
-              onClick={() => setReferOpen(!referOpen)}
-              aria-expanded={referOpen}
-              className={`rounded-full px-6 py-3 font-poppins-semibold uppercase text-sm transition-opacity whitespace-nowrap ${
-                referOpen
-                  ? "bg-dark-green text-white"
-                  : "bg-orange-glow text-white hover:opacity-90"
-              }`}
+              onClick={() => setReferOpen(true)}
+              aria-haspopup="dialog"
+              className="rounded-full px-6 py-3 font-poppins-semibold uppercase text-sm transition-opacity whitespace-nowrap bg-orange-glow text-white hover:opacity-90"
             >
-              {referOpen ? "Close" : "Refer a Friend"}
+              Refer a Friend
             </button>
           )}
         </div>
-        {referOpen && wallet.referralUrl && <ReferFriendPanel url={wallet.referralUrl} />}
         {tab === "rewards" ? (
           <>
             {wallet.rewards.length > 0 ? (
@@ -113,6 +108,10 @@ export default function WalletView({ wallet, onReset }: Props) {
           Check a different account
         </button>
       </section>
+
+      {referOpen && wallet.referralUrl && (
+        <ReferFriendPanel url={wallet.referralUrl} onClose={() => setReferOpen(false)} />
+      )}
     </div>
   );
 }

@@ -19,7 +19,7 @@ export default async function RewardsPage() {
     <div className="relative min-h-screen overflow-hidden">
       <div className="relative z-10 max-w-[1365px] mx-auto px-4 md:px-6 py-5 md:py-8 flex flex-col gap-5 lg:gap-8">
         <GardenClubHero />
-
+yooopopoooo
         <div className="flex flex-col lg:flex-row gap-5 lg:gap-8">
           <div className="flex-1 min-w-0">
             <PointsInfo />
