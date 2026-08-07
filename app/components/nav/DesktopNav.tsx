@@ -1,10 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { NAV_LINKS } from "./links";
+import ProfileIcon from "./ProfileIcon";
 
 export default function DesktopNav() {
   return (
-    <div className="hidden [@media(min-width:1200px)]:block sticky top-0 z-40 px-6 pt-2 pb-4 relative">
+    <div className="hidden [@media(min-width:1240px)]:block sticky top-0 z-40 px-6 pt-2 pb-4 relative">
       <div
         className="absolute inset-x-0 top-0 h-1/2 backdrop-blur-xl pointer-events-none bg-sky-blue"
         style={{
@@ -70,6 +71,13 @@ export default function DesktopNav() {
             className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity"
           >
             Shop Rec
+          </Link>
+          <Link
+            href="/loyalty/rewards/"
+            aria-label="My rewards"
+            className="flex items-center justify-center shrink-0 w-[52px] h-[52px] bg-light-gold text-dark-green rounded-full hover:opacity-90 transition-opacity"
+          >
+            <ProfileIcon />
           </Link>
         </div>
       </nav>
