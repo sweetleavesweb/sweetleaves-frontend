@@ -16,6 +16,7 @@ const staticRoutes: Array<{ path: string } & RouteConfig> = [
   { path: "/events/", changeFrequency: "monthly", priority: 0.5 },
   { path: "/faqs/", changeFrequency: "monthly", priority: 0.5 },
   { path: "/loyalty/", changeFrequency: "monthly", priority: 0.5 },
+  { path: "/loyalty/rewards/", changeFrequency: "monthly", priority: 0.5 },
   { path: "/shop-recreational-cannabis/", changeFrequency: "weekly", priority: 1.0 },
   { path: "/shop-medical-cannabis/", changeFrequency: "weekly", priority: 1.0 },
   { path: "/certificate-of-analysis/", changeFrequency: "monthly", priority: 0.5 },
