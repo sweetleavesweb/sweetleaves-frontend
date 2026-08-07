@@ -8,7 +8,6 @@ export interface Reward {
   id: string;
   name: string;
   pointsCost: number;
-  available: boolean;
   expiration: number;
 }
 
@@ -43,9 +42,8 @@ export interface Wallet {
 
 interface AiqDiscountTemplate {
   id?: string;
-  name?: string;
+  pageTitle?: string;
   pointsDeduction?: number;
-  available?: boolean;
   expiration?: number;
 }
 
@@ -187,12 +185,11 @@ export async function fetchWallet(contact: Contact, code: string): Promise<Walle
     : [];
 
   const rewards: Reward[] = templates
-    .filter((t) => t.name)
+    .filter((t) => t.pageTitle)
     .map((t, index) => ({
       id: t.id ?? String(index),
-      name: t.name as string,
+      name: t.pageTitle as string,
       pointsCost: t.pointsDeduction ?? 0,
-      available: Boolean(t.available),
       expiration: t.expiration ?? 0,
     }))
     .sort((a, b) => a.pointsCost - b.pointsCost);

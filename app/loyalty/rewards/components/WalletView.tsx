@@ -17,8 +17,6 @@ export default function WalletView({ wallet, onReset }: Props) {
   const [tab, setTab] = useState<Tab>("rewards");
   const [referOpen, setReferOpen] = useState(false);
   const points = Math.floor(wallet.points);
-  const nextReward = wallet.rewards.find((r) => !r.available && r.pointsCost > points);
-  const progress = nextReward ? Math.min(100, (points / nextReward.pointsCost) * 100) : 0;
 
   return (
     <div className="flex flex-col gap-5">
@@ -31,19 +29,6 @@ export default function WalletView({ wallet, onReset }: Props) {
             {points.toLocaleString()}
           </p>
           <p className="font-poppins-regular text-lg text-white">points</p>
-          {nextReward && (
-            <div className="w-full max-w-md flex flex-col gap-2">
-              <div className="h-3 bg-white/20 rounded-full overflow-hidden">
-                <div
-                  className="h-full bg-light-gold rounded-full"
-                  style={{ width: `${progress}%` }}
-                />
-              </div>
-              <p className="font-poppins-regular text-base text-white text-center">
-                {nextReward.pointsCost - points} points until {nextReward.name}
-              </p>
-            </div>
-          )}
           {(wallet.passLinks.apple || wallet.passLinks.google) && (
             <AddToWalletRow passLinks={wallet.passLinks} />
           )}
@@ -54,7 +39,7 @@ export default function WalletView({ wallet, onReset }: Props) {
         <div className="self-center w-full max-w-xl flex flex-col sm:flex-row items-stretch justify-center gap-2.5">
           <div className="flex-1 bg-dark-green rounded-full p-1 flex">
             <TabButton active={tab === "rewards"} onClick={() => setTab("rewards")}>
-              Rewards
+              Unlocked Rewards
             </TabButton>
             <TabButton active={tab === "orders"} onClick={() => setTab("orders")}>
               Past Orders
@@ -76,7 +61,7 @@ export default function WalletView({ wallet, onReset }: Props) {
             {wallet.rewards.length > 0 ? (
               <div className="flex flex-col gap-2.5">
                 {wallet.rewards.map((reward) => (
-                  <RewardCard key={reward.id} reward={reward} points={points} />
+                  <RewardCard key={reward.id} reward={reward} />
                 ))}
               </div>
             ) : (
