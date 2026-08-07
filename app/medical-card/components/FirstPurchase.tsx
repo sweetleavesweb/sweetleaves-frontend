@@ -14,7 +14,7 @@ const STEPS: StepProps[] = [
     title: "Schedule your pharmacist appointment",
     description:
       "Book a required consultation with a Sweetleaves pharmacist to register for medication dispensation.",
-    href: "https://bookings.cloud.microsoft/book/Sweetleaves@sweetleavesnorthloop.com/?ismsaljsauthenabled",
+    href: "https://outlook.office.com/book/Sweetleaves@sweetleavesnorthloop.com/?ismsaljsauthenabled",
   },
   {
     num: 3,
@@ -65,7 +65,7 @@ export default function FirstPurchase() {
 
       <div className="flex flex-col sm:flex-row gap-3 justify-center">
         <a
-          href="mailto:medical@sweetleavesnorthloop.com"
+          href="mailto:medical@sweetleaves.co"
           className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity text-center"
         >
           Email Us

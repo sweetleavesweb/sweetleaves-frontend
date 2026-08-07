@@ -104,10 +104,10 @@ export default async function CoaPage() {
             screen for 60+ contaminants. Can&apos;t find the batch on your
             bag? Email{" "}
             <a
-              href="mailto:info@sweetleavesnorthloop.com"
+              href="mailto:info@sweetleaves.co"
               className="text-light-gold underline"
             >
-              info@sweetleavesnorthloop.com
+              info@sweetleaves.co
             </a>{" "}
             with the lot number and we&apos;ll send the report directly.
           </p>
