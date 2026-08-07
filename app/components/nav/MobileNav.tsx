@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { NAV_LINKS } from "./links";
+import ProfileIcon from "./ProfileIcon";
 
 export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
@@ -40,7 +41,7 @@ export default function MobileNav() {
   }
 
   return (
-    <div className="[@media(min-width:1200px)]:hidden sticky top-0 z-40">
+    <div className="[@media(min-width:1240px)]:hidden sticky top-0 z-40">
       <div className="relative bg-dark-green px-5 pt-4 pb-4">
         {/* Top row: logo + hamburger */}
         <div className="flex items-center justify-between">
@@ -92,6 +93,14 @@ export default function MobileNav() {
             className="flex-1 flex items-center justify-center bg-light-gold text-dark-green font-poppins-semibold uppercase text-base py-3.5 rounded-full hover:opacity-90 transition-opacity"
           >
             Shop Rec
+          </Link>
+          <Link
+            href="/loyalty/rewards/"
+            onClick={close}
+            aria-label="My rewards"
+            className="flex items-center justify-center shrink-0 w-[52px] bg-light-gold text-dark-green rounded-full hover:opacity-90 transition-opacity"
+          >
+            <ProfileIcon />
           </Link>
         </div>
 
