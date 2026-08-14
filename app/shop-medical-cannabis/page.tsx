@@ -11,8 +11,8 @@ const MED_SCRIPT_SRC =
 
 export default function ShopMedPage() {
   return (
-    <div className="flex flex-col flex-1">
-      <h1 className="px-4 pt-6 pb-2 md:px-8 font-poppins-bold text-[35px] md:text-[55px] text-dark-green leading-tight">
+    <div className="flex flex-col flex-1 md:max-w-[1365px] md:mx-auto md:px-6 md:py-8">
+      <h1 className="px-4 pt-6 pb-2 md:px-0 font-poppins-bold text-[35px] md:text-[55px] text-dark-green leading-tight">
         Medical Cannabis
       </h1>
       <div className="flex-1">
