@@ -13,7 +13,7 @@ export default function CatalogPageTemplate({ entry }: Props) {
         {entry.headline}
       </h1>
 
-      <div className="flex-1">
+      <div className="flex-1 pb-8">
         <DutchieEmbed dutchieParams={entry.dutchieParams} />
       </div>
 

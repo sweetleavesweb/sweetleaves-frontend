@@ -23,7 +23,7 @@ export default async function ShopPage({ searchParams }: Props) {
       <h1 className="px-4 pt-6 pb-2 md:px-0 font-poppins-bold text-[35px] md:text-[55px] text-dark-green leading-tight">
         Recreational Cannabis
       </h1>
-      <div className="flex-1">
+      <div className="flex-1 pb-8">
         <DutchieEmbed dutchieParams={Object.keys(dutchieParams).length ? dutchieParams : undefined} />
       </div>
     </div>
