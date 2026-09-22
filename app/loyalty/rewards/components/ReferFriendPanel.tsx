@@ -59,7 +59,7 @@ export default function ReferFriendPanel({ url, onClose }: Props) {
         </h3>
         <p className="font-poppins-regular text-base text-dark text-center">
           Have a friend scan your personal code — you and your friend each earn
-          50 points when they join the Garden Club.
+          100 points when they join the Garden Club.
         </p>
         <div className="border border-sage rounded-2xl p-4">
           <QRCode value={url} size={160} fgColor="#0F2D25" />
