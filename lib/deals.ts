@@ -7,11 +7,13 @@ import { getWPData } from "./wp";
 export interface DealSlide {
   url: string;
   alt: string;
+  href: string | null;
 }
 
 type DealNode = {
   title: string;
   featuredImage: { node: { sourceUrl: string } } | null;
+  dealFields: { dealUrl: string | null } | null;
 };
 
 // ---------------------------------------------------------------------------
@@ -28,10 +30,26 @@ const GET_DEALS_QUERY = `
             sourceUrl
           }
         }
+        dealFields {
+          dealUrl
+        }
       }
     }
   }
 `;
+
+// ---------------------------------------------------------------------------
+// Link normalisation
+// ---------------------------------------------------------------------------
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sweetleaves.co";
+
+function toSlideHref(dealUrl: string | null | undefined): string | null {
+  const url = dealUrl?.trim();
+  if (!url) return null;
+  if (url.startsWith(SITE_URL)) return url.slice(SITE_URL.length) || "/";
+  return url;
+}
 
 // ---------------------------------------------------------------------------
 // getDealsBannerSlides
@@ -46,5 +64,6 @@ export async function getDealsBannerSlides(): Promise<DealSlide[]> {
     .map((node) => ({
       url: node.featuredImage!.node.sourceUrl,
       alt: node.title ?? "",
+      href: toSlideHref(node.dealFields?.dealUrl),
     }));
 }
