@@ -1,4 +1,4 @@
-const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sweetleaves.co";
+import { SITE_URL } from "@/lib/site";
 
 export const revalidate = 3600;
 
@@ -6,10 +6,10 @@ export function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
-    <loc>${BASE}/sitemap.xml</loc>
+    <loc>${SITE_URL}/sitemap.xml</loc>
   </sitemap>
   <sitemap>
-    <loc>${BASE}/sitemap-posts.xml</loc>
+    <loc>${SITE_URL}/sitemap-posts.xml</loc>
   </sitemap>
 </sitemapindex>`;
 

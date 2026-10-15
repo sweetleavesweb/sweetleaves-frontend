@@ -1,4 +1,5 @@
 import { getWPData } from "./wp";
+import { SITE_URL } from "./site";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -41,8 +42,6 @@ const GET_DEALS_QUERY = `
 // ---------------------------------------------------------------------------
 // Link normalisation
 // ---------------------------------------------------------------------------
-
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sweetleaves.co";
 
 function stripWww(hostname: string): string {
   return hostname.replace(/^www\./, "");

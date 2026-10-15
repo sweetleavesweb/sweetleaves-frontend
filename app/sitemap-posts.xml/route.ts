@@ -1,6 +1,5 @@
 import { getPosts } from "@/lib/blog";
-
-const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sweetleaves.co";
+import { SITE_URL } from "@/lib/site";
 
 export const revalidate = 300;
 
@@ -10,7 +9,7 @@ export async function GET() {
   const urls = posts
     .map(
       (post) => `  <url>
-    <loc>${BASE}/blog/${post.slug}/</loc>
+    <loc>${SITE_URL}/blog/${post.slug}/</loc>
     <lastmod>${new Date(post.date).toISOString().split("T")[0]}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

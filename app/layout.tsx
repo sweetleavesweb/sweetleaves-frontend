@@ -8,6 +8,7 @@ import PageViewTracker from "./components/PageViewTracker";
 import GardenClubPopup from "./components/GardenClubPopup";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const poppins = Poppins({
@@ -16,10 +17,8 @@ const poppins = Poppins({
   subsets: ["latin"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
-
 export const metadata: Metadata = {
-  metadataBase: siteUrl ? new URL(siteUrl) : undefined,
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Sweetleaves Cannabis",
     template: "%s | Sweetleaves",
