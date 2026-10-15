@@ -13,17 +13,26 @@ interface Props {
 
 export default function DealsCarousel({ slides }: Props) {
   const [index, setIndex] = useState(0);
+  const [focused, setFocused] = useState(false);
   const activeIndex = index % slides.length;
   const slide = slides[activeIndex];
   const hasMultiple = slides.length > 1;
 
   useEffect(() => {
-    if (!hasMultiple) return;
+    if (!hasMultiple || focused) return;
     const interval = setInterval(() => {
       setIndex((i) => (i + 1) % slides.length);
     }, AUTO_ADVANCE_MS);
     return () => clearInterval(interval);
-  }, [hasMultiple, slides.length, index]);
+  }, [hasMultiple, focused, slides.length, index]);
+
+  function handleFocus(e: React.FocusEvent) {
+    if (e.target.matches(":focus-visible")) setFocused(true);
+  }
+
+  function handleBlur(e: React.FocusEvent) {
+    if (!e.currentTarget.contains(e.relatedTarget)) setFocused(false);
+  }
 
   function goPrev() {
     setIndex((i) => (i - 1 + slides.length) % slides.length);
@@ -45,7 +54,11 @@ export default function DealsCarousel({ slides }: Props) {
   );
 
   return (
-    <div className="relative aspect-2/1 md:aspect-4/1 w-full max-w-7xl mx-auto rounded-[40px] overflow-hidden">
+    <div
+      className="relative aspect-2/1 md:aspect-4/1 w-full max-w-7xl mx-auto rounded-[40px] overflow-hidden"
+      onFocus={handleFocus}
+      onBlur={handleBlur}
+    >
       {slide.href ? (
         <SlideLink href={slide.href} label={slide.alt}>
           {image}
