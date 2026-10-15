@@ -44,11 +44,22 @@ const GET_DEALS_QUERY = `
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sweetleaves.co";
 
+function stripWww(hostname: string): string {
+  return hostname.replace(/^www\./, "");
+}
+
+const SITE_HOST = stripWww(new URL(SITE_URL).hostname);
+
 function toSlideHref(dealUrl: string | null | undefined): string | null {
   const url = dealUrl?.trim();
   if (!url) return null;
-  if (url.startsWith(SITE_URL)) return url.slice(SITE_URL.length) || "/";
-  return url;
+  try {
+    const parsed = new URL(url, SITE_URL);
+    if (stripWww(parsed.hostname) !== SITE_HOST) return parsed.href;
+    return parsed.pathname + parsed.search + parsed.hash;
+  } catch {
+    return null;
+  }
 }
 
 // ---------------------------------------------------------------------------

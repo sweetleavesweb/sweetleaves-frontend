@@ -13,7 +13,8 @@ interface Props {
 
 export default function DealsCarousel({ slides }: Props) {
   const [index, setIndex] = useState(0);
-  const slide = slides[index];
+  const activeIndex = index % slides.length;
+  const slide = slides[activeIndex];
   const hasMultiple = slides.length > 1;
 
   useEffect(() => {
@@ -39,12 +40,12 @@ export default function DealsCarousel({ slides }: Props) {
       fill
       className="object-cover object-center"
       sizes="(max-width: 768px) 100vw, 1280px"
-      priority={index === 0}
+      priority={activeIndex === 0}
     />
   );
 
   return (
-    <div className="relative aspect-[2/1] md:aspect-[4/1] w-full max-w-[1280px] mx-auto rounded-[40px] overflow-hidden">
+    <div className="relative aspect-2/1 md:aspect-4/1 w-full max-w-7xl mx-auto rounded-[40px] overflow-hidden">
       {slide.href ? (
         <SlideLink href={slide.href} label={slide.alt}>
           {image}
@@ -63,10 +64,10 @@ export default function DealsCarousel({ slides }: Props) {
                 key={i}
                 type="button"
                 aria-label={`Go to slide ${i + 1}`}
-                aria-current={i === index}
+                aria-current={i === activeIndex}
                 onClick={() => setIndex(i)}
                 className={`w-2.5 h-2.5 rounded-full transition-colors ${
-                  i === index ? "bg-ivory" : "bg-ivory/40"
+                  i === activeIndex ? "bg-ivory" : "bg-ivory/40"
                 }`}
               />
             ))}
@@ -91,7 +92,6 @@ function SlideLink({ href, label, children }: SlideLinkProps) {
       aria-label={label}
       className="absolute inset-0"
       target={isExternal ? "_blank" : undefined}
-      rel={isExternal ? "noopener noreferrer" : undefined}
     >
       {children}
     </Link>
@@ -112,7 +112,7 @@ function ArrowButton({ direction, onClick }: ArrowButtonProps) {
       onClick={onClick}
       className={`absolute top-1/2 -translate-y-1/2 ${
         isPrev ? "left-2.5 md:left-4" : "right-2.5 md:right-4"
-      } size-9 md:size-11 rounded-full bg-almost-black/35 hover:bg-almost-black/55 backdrop-blur-sm text-white flex items-center justify-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ivory`}
+      } size-9 md:size-11 rounded-full bg-almost-black/35 hover:bg-almost-black/55 backdrop-blur-sm text-ivory flex items-center justify-center transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ivory`}
     >
       <svg
         viewBox="0 0 24 24"
