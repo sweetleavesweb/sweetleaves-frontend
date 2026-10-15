@@ -1,8 +1,7 @@
 import type { MetadataRoute } from "next";
 import { brands } from "@/lib/brands";
 import { products } from "@/lib/products";
-
-const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sweetleaves.co";
+import { SITE_URL } from "@/lib/site";
 
 type RouteConfig = {
   changeFrequency: MetadataRoute.Sitemap[number]["changeFrequency"];
@@ -28,21 +27,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
   const statics = staticRoutes.map(({ path, changeFrequency, priority }) => ({
-    url: `${BASE}${path}`,
+    url: `${SITE_URL}${path}`,
     lastModified,
     changeFrequency,
     priority,
   }));
 
   const brandEntries = brands.map((brand) => ({
-    url: `${BASE}/brands/${brand.slug}/`,
+    url: `${SITE_URL}/brands/${brand.slug}/`,
     lastModified,
     changeFrequency: "weekly" as const,
     priority: 1.0,
   }));
 
   const productEntries = products.map((product) => ({
-    url: `${BASE}/products/${product.slug}/`,
+    url: `${SITE_URL}/products/${product.slug}/`,
     lastModified,
     changeFrequency: "weekly" as const,
     priority: 1.0,
