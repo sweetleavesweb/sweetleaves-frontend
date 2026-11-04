@@ -9,10 +9,12 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const PLAIN_SCRIPT_SRC = "https://dutchie.com/api/v2/embedded-menu/6ad7ca150ded88f0bb5e6c98.js";
-const CHAIN_SCRIPT_SRC = `${PLAIN_SCRIPT_SRC}?chainLocations=true&searchMethod=deliveryArea`;
+const SCRIPT_SRC = "https://dutchie.com/api/v2/embedded-menu/6ad7ca150ded88f0bb5e6c98.js";
 
 const PRESETS = [
+  { label: "Rec: chain + preview", href: "/delivery-sandbox/?preview=1" },
+  { label: "Rec: plain + preview", href: "/delivery-sandbox/?script=plain&preview=1" },
+  { label: "Med: plain + preview", href: "/delivery-sandbox/?menu=med&script=plain&preview=1" },
   { label: "Rec (no params)", href: "/delivery-sandbox/" },
   { label: "Rec: plain script", href: "/delivery-sandbox/?script=plain" },
   { label: "Med (no params)", href: "/delivery-sandbox/?menu=med" },
@@ -29,8 +31,15 @@ export default async function DeliverySandboxPage({ searchParams }: Props) {
   const params = await searchParams;
   const isMed = params.menu === "med";
   const isPlain = params.script === "plain";
-  const baseSrc = isPlain ? PLAIN_SCRIPT_SRC : CHAIN_SCRIPT_SRC;
-  const scriptSrc = isMed ? `${baseSrc}${isPlain ? "?" : "&"}menuType=med` : baseSrc;
+  const isPreview = params.preview === "1";
+  const scriptParams = new URLSearchParams();
+  if (!isPlain) {
+    scriptParams.set("chainLocations", "true");
+    scriptParams.set("searchMethod", "deliveryArea");
+  }
+  if (isMed) scriptParams.set("menuType", "med");
+  if (isPreview) scriptParams.set("previewMode", "true");
+  const scriptSrc = scriptParams.size ? `${SCRIPT_SRC}?${scriptParams}` : SCRIPT_SRC;
   const dutchieParams = Object.fromEntries(
     Object.entries(params)
       .filter(([key]) => key.startsWith("dtche"))
@@ -41,7 +50,7 @@ export default async function DeliverySandboxPage({ searchParams }: Props) {
     <div className="flex flex-col flex-1 md:max-w-[1365px] md:mx-auto md:px-6 md:py-8">
       <div className="px-4 pt-6 pb-4 md:px-0 flex flex-col gap-3">
         <h1 className="font-poppins-bold text-[35px] text-dark-green">
-          Delivery Sandbox ({isMed ? "Med" : "Rec"}, {isPlain ? "plain" : "chain"})
+          Delivery Sandbox ({isMed ? "Med" : "Rec"}, {isPlain ? "plain" : "chain"}{isPreview ? ", preview" : ""})
         </h1>
         <div className="flex flex-wrap gap-2">
           {PRESETS.map((preset) => (
