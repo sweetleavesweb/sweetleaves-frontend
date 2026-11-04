@@ -9,12 +9,14 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const SANDBOX_SCRIPT_SRC =
-  "https://dutchie.com/api/v2/embedded-menu/6ad7ca150ded88f0bb5e6c98.js?chainLocations=true&searchMethod=deliveryArea";
+const PLAIN_SCRIPT_SRC = "https://dutchie.com/api/v2/embedded-menu/6ad7ca150ded88f0bb5e6c98.js";
+const CHAIN_SCRIPT_SRC = `${PLAIN_SCRIPT_SRC}?chainLocations=true&searchMethod=deliveryArea`;
 
 const PRESETS = [
   { label: "Rec (no params)", href: "/delivery-sandbox/" },
+  { label: "Rec: plain script", href: "/delivery-sandbox/?script=plain" },
   { label: "Med (no params)", href: "/delivery-sandbox/?menu=med" },
+  { label: "Med: plain script", href: "/delivery-sandbox/?menu=med&script=plain" },
   { label: "Rec: skip to store", href: "/delivery-sandbox/?dtche%5Blocation%5D=sweetleaves-test-sandbox" },
   { label: "Med: skip to store", href: "/delivery-sandbox/?menu=med&dtche%5Blocation%5D=sweetleaves-test-sandbox" },
 ];
@@ -26,7 +28,9 @@ interface Props {
 export default async function DeliverySandboxPage({ searchParams }: Props) {
   const params = await searchParams;
   const isMed = params.menu === "med";
-  const scriptSrc = isMed ? `${SANDBOX_SCRIPT_SRC}&menuType=med` : SANDBOX_SCRIPT_SRC;
+  const isPlain = params.script === "plain";
+  const baseSrc = isPlain ? PLAIN_SCRIPT_SRC : CHAIN_SCRIPT_SRC;
+  const scriptSrc = isMed ? `${baseSrc}${isPlain ? "?" : "&"}menuType=med` : baseSrc;
   const dutchieParams = Object.fromEntries(
     Object.entries(params)
       .filter(([key]) => key.startsWith("dtche"))
@@ -37,7 +41,7 @@ export default async function DeliverySandboxPage({ searchParams }: Props) {
     <div className="flex flex-col flex-1 md:max-w-[1365px] md:mx-auto md:px-6 md:py-8">
       <div className="px-4 pt-6 pb-4 md:px-0 flex flex-col gap-3">
         <h1 className="font-poppins-bold text-[35px] text-dark-green">
-          Delivery Sandbox ({isMed ? "Med" : "Rec"})
+          Delivery Sandbox ({isMed ? "Med" : "Rec"}, {isPlain ? "plain" : "chain"})
         </h1>
         <div className="flex flex-wrap gap-2">
           {PRESETS.map((preset) => (
