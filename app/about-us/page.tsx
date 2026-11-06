@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import AboutIntro from "./components/AboutIntro";
-import FindUs from "./components/FindUs";
-import HowToShop from "./components/HowToShop";
+import HowToShop from "../components/HowToShop";
 import WhatWeStandFor from "./components/WhatWeStandFor";
 import FaqSection from "../components/FaqSection";
 import { getCommonFaqs } from "@/lib/faq";
@@ -9,7 +8,7 @@ import { getCommonFaqs } from "@/lib/faq";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Sweetleaves, a recreational cannabis dispensary in North Loop Minneapolis. Cannabis for real people.",
+    "Learn about Sweetleaves, a recreational cannabis dispensary in Minnesota. Cannabis for real people.",
   alternates: { canonical: "/about-us/" },
 };
 
@@ -25,7 +24,6 @@ export default async function AboutPage() {
           </h1>
         </section>
         <AboutIntro />
-        <FindUs />
         <HowToShop />
         <WhatWeStandFor />
         <FaqSection faqs={commonFaqs} />

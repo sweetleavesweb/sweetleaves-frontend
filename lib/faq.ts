@@ -152,3 +152,13 @@ export async function getFaqsBySection(sectionSlug: string): Promise<FaqItem[]> 
     .sort((a, b) => a.menuOrder - b.menuOrder)
     .map(({ sections: _, ...faq }) => faq);
 }
+
+// ---------------------------------------------------------------------------
+// getFaqsByQuestion — specific FAQs by exact question title, in the given order
+// ---------------------------------------------------------------------------
+
+export async function getFaqsByQuestion(questions: string[]): Promise<FaqItem[]> {
+  const sections = await getFaqSections();
+  const byQuestion = new Map(sections.flatMap((s) => s.faqs).map((faq) => [faq.question, faq]));
+  return questions.flatMap((q) => byQuestion.get(q) ?? []);
+}

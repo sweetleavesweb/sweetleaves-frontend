@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { GOOGLE_MAPS_URL } from "@/lib/constants";
+import { locationHref, locations } from "@/lib/locations";
 
 export default function Footer() {
   return (
@@ -23,13 +24,11 @@ export default function Footer() {
         </div>
         <p className="font-poppins-bold text-3xl text-light-gold leading-none text-center md:text-left">
           Cannabis for real life.
-          <br />
-          Located in North Loop Minneapolis.
         </p>
       </div>
 
       {/* Link columns */}
-      <div className="flex flex-col md:grid md:grid-cols-4 gap-5 md:gap-[70px] items-center md:items-start">
+      <div className="flex flex-col md:grid md:grid-cols-3 gap-5 md:gap-[70px] items-center md:items-start">
         {/* Shop */}
         <div className="flex flex-col gap-1.5 items-center md:items-start">
           <p className="font-poppins-bold text-lg text-ivory uppercase text-center md:text-left">
@@ -94,7 +93,7 @@ export default function Footer() {
               className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left"
             >
               Medical Card
-            </Link>            
+            </Link>
           </nav>
         </div>
 
@@ -103,119 +102,57 @@ export default function Footer() {
           <p className="font-poppins-bold text-lg text-ivory uppercase text-center md:text-left">
             Visit
           </p>
-          <div className="flex flex-col items-center md:items-start">
-            <a
-              href="https://maps.app.goo.gl/qdpTUHsrBr7cpnm7A"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-poppins-regular text-lg text-white hover:opacity-75 transition-opacity text-center md:text-left"
-            >
-              905 N Washington Ave
-              <br />
-              Minneapolis, MN 55401
-            </a>
-            <a
-              href="tel:612-688-9333"
-              className="font-poppins-regular text-lg text-white hover:opacity-75 transition-opacity text-center md:text-left"
-            >
-              612-688-9333
-            </a>
-          </div>
+          <nav className="flex flex-col items-center md:items-start">
+            {locations.map((l) => (
+              <Link
+                key={l.slug}
+                href={locationHref(l.slug)}
+                className="font-poppins-regular text-lg text-white py-0.5 hover:opacity-75 transition-opacity text-center md:text-left"
+              >
+                {l.name}
+              </Link>
+            ))}
+          </nav>
         </div>
 
-        {/* Hours */}
-        <div className="flex flex-col gap-1.5 items-center md:items-start">
-          <p className="font-poppins-bold text-lg text-ivory uppercase text-center md:text-left">
-            Hours
-          </p>
-          <div className="flex flex-col items-center md:items-start">
-            <span className="font-poppins-regular text-lg text-white">
-              Monday: 10am-9pm
-            </span>
-            <span className="font-poppins-regular text-lg text-white">
-              Tuesday: 10am-9pm
-            </span>
-            <span className="font-poppins-regular text-lg text-white">
-              Wednesday: 10am-9pm
-            </span>
-            <span className="font-poppins-regular text-lg text-white">
-              Thursday: 10am-10pm
-            </span>
-            <span className="font-poppins-regular text-lg text-white">
-              Friday: 10am-10pm
-            </span>
-            <span className="font-poppins-regular text-lg text-white">
-              Saturday: 9am-10pm
-            </span>
-            <span className="font-poppins-regular text-lg text-white">
-              Sunday: 11am-6pm
-            </span>
-          </div>
-        </div>
-
-        {/* Map - mobile only */}
-        <div className="md:hidden w-full max-w-[350px]">
-          <iframe
-            src="https://www.google.com/maps?q=905+N+Washington+Ave,+Minneapolis,+MN+55401&t=&z=15&ie=UTF8&iwloc=&output=embed"
-            title="Map to Sweetleaves"
-            width={350}
-            height={200}
-            className="w-full h-auto rounded-[10px] border-0"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-        </div>
       </div>
 
       {/* Bottom row */}
       <div className="flex flex-col md:flex-row items-center md:items-end justify-between gap-8">
-        {/* Map + social */}
-        <div className="flex flex-col gap-5 items-center md:items-start">
-          <div className="hidden md:block w-[429px]">
-            <iframe
-              src="https://www.google.com/maps?q=Sweetleaves+North+Loop+Minneapolis&output=embed"
-              title="Map to Sweetleaves"
-              width={429}
-              height={200}
-              className="w-full h-auto rounded-[10px] border-0"
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
-          <div className="flex flex-col md:flex-row gap-3.5 md:gap-5 items-center md:items-end">
-            <div className="flex gap-3.5 items-center">
-              <a
-                href="https://www.instagram.com/sweetleaves.co/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src="/social/instagram-white.png"
-                  alt="Sweetleaves on Instagram"
-                  width={46}
-                  height={46}
-                />
-              </a>
-              <a
-                href={GOOGLE_MAPS_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Image
-                  src="/social/google-logo.png"
-                  alt="Sweetleaves on Google"
-                  width={48}
-                  height={49}
-                />
-              </a>
-            </div>
-            <Link
-              href="/loyalty/"
-              className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity text-center w-full md:w-auto max-w-[350px]"
+        {/* Social */}
+        <div className="flex flex-col md:flex-row gap-3.5 md:gap-5 items-center md:items-end">
+          <div className="flex gap-3.5 items-center">
+            <a
+              href="https://www.instagram.com/sweetleaves.co/"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Sign Up For Rewards
-            </Link>
+              <Image
+                src="/social/instagram-white.png"
+                alt="Sweetleaves on Instagram"
+                width={46}
+                height={46}
+              />
+            </a>
+            <a
+              href={GOOGLE_MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/social/google-logo.png"
+                alt="Sweetleaves on Google"
+                width={48}
+                height={49}
+              />
+            </a>
           </div>
+          <Link
+            href="/loyalty/"
+            className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity text-center w-full md:w-auto max-w-[350px]"
+          >
+            Sign Up For Rewards
+          </Link>
         </div>
 
         {/* Compliance */}
