@@ -24,7 +24,10 @@ export default async function ShopPage({ searchParams }: Props) {
         Recreational Cannabis
       </h1>
       <div className="flex-1 pb-8">
-        <DutchieEmbed dutchieParams={Object.keys(dutchieParams).length ? dutchieParams : undefined} />
+        <DutchieEmbed
+          dutchieParams={Object.keys(dutchieParams).length ? dutchieParams : undefined}
+          delivery={params.delivery === "1"}
+        />
       </div>
     </div>
   );

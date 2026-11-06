@@ -5,11 +5,14 @@ import { useEffect, useRef } from "react";
 interface Props {
   dutchieParams?: Record<string, string>;
   scriptSrc?: string;
+  delivery?: boolean;
 }
 
 const REC_SCRIPT_SRC = "https://dutchie.com/api/v2/embedded-menu/65ae80f7dbecc7000934725c.js";
+// Opens the menu on the delivery address search instead of the pickup menu.
+const REC_DELIVERY_SCRIPT_SRC = `${REC_SCRIPT_SRC}?chainLocations=true&searchMethod=deliveryArea`;
 
-export default function DutchieEmbed({ dutchieParams, scriptSrc }: Props) {
+export default function DutchieEmbed({ dutchieParams, scriptSrc, delivery }: Props) {
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -34,7 +37,7 @@ export default function DutchieEmbed({ dutchieParams, scriptSrc }: Props) {
 
     const s = document.createElement("script");
     s.id = "dutchie--embed__script";
-    s.src = scriptSrc ?? REC_SCRIPT_SRC;
+    s.src = scriptSrc ?? (delivery ? REC_DELIVERY_SCRIPT_SRC : REC_SCRIPT_SRC);
     s.async = true;
     s.defer = true;
     container.appendChild(s);
@@ -48,7 +51,7 @@ export default function DutchieEmbed({ dutchieParams, scriptSrc }: Props) {
       }
       window.history.replaceState(null, "", cleanUrl.toString());
     };
-  }, [dutchieParams, scriptSrc]);
+  }, [dutchieParams, scriptSrc, delivery]);
 
   return <div ref={rootRef} />;
 }
