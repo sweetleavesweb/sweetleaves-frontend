@@ -6,14 +6,14 @@ import {
   StorePhoto,
   ReviewsSection,
   BlogSection,
-  GardenClubPromo,
 } from "./components/home";
+import GardenClubPromo from "./components/GardenClubPromo";
 import FaqSection from "./components/FaqSection";
 import { getCommonFaqs } from "@/lib/faq";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Recreational Cannabis Dispensary in Minneapolis, MN | Sweetleaves",
+    absolute: "Medical & Recreational Cannabis Dispensary in Minnesota | Sweetleaves",
   },
   description:
     "Redefine your recreational cannabis at Sweetleaves, your trusted dispensary in Minneapolis, Minnesota. Shop quality products for all your cannabis needs.",
@@ -39,7 +39,7 @@ export default async function Home() {
           <BlogSection />
         </div>
 
-        <GardenClubPromo />
+        <GardenClubPromo description="Points add up automatically when you use your phone number or email at checkout. You must be subscribed to our marketing communications to be in the Garden Club." />
         <StorePhoto
           src="/home/store-interior.png"
           alt="Sweetleaves dispensary interior"

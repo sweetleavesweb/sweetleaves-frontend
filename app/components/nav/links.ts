@@ -1,6 +1,7 @@
 import { products } from "@/lib/products";
 import { brands } from "@/lib/brands";
 import type { CatalogEntry } from "@/lib/catalog";
+import { locationHref, locations } from "@/lib/locations";
 
 type SimpleLink = { href: string; label: string; items?: never };
 type DropdownLink = { label: string; items: { href: string; label: string }[]; href?: never };
@@ -30,6 +31,7 @@ export const NAV_LINKS: NavItem[] = [
     { href: "/blog/", label: "Blog" },
     { href: "/medical-card/", label: "How to get your Medical Card in MN" }
   ]},
+  { label: "Locations", items: locations.map((l) => ({ href: locationHref(l.slug), label: l.name })) },
   { href: "/loyalty/", label: "Rewards" },
   { href: "/contact/", label: "Contact" },
 ];

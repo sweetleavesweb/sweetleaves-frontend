@@ -2,9 +2,22 @@ import Link from "next/link";
 
 interface ShopMethodProps {
   number: number;
-  title: string;
+  title: React.ReactNode;
   description: string;
   boldWord?: string;
+}
+
+interface MenuLinkProps {
+  href: string;
+  children: string;
+}
+
+function MenuLink({ href, children }: MenuLinkProps) {
+  return (
+    <Link href={href} className="underline decoration-2 underline-offset-4 hover:text-orange-glow transition-colors">
+      {children}
+    </Link>
+  );
 }
 
 function ShopMethod({ number, title, description, boldWord }: ShopMethodProps) {
@@ -41,7 +54,12 @@ function ShopMethod({ number, title, description, boldWord }: ShopMethodProps) {
 const METHODS: ShopMethodProps[] = [
   {
     number: 1,
-    title: "Online for Pickup",
+    title: (
+      <>
+        Online for <MenuLink href="/shop-recreational-cannabis/">Pickup</MenuLink> or{" "}
+        <MenuLink href="/shop-recreational-cannabis/?delivery=1">Delivery</MenuLink>
+      </>
+    ),
     description:
       "Browse our full menu and place your order from anywhere. We offer curbside.",
     boldWord: "curbside",
@@ -70,12 +88,6 @@ export default function HowToShop() {
           <ShopMethod key={m.number} {...m} />
         ))}
       </div>
-      <Link
-        href="/about-us/#find-us"
-        className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity text-center w-full max-w-[356px]"
-      >
-        Plan Your Visit
-      </Link>
     </section>
   );
 }
