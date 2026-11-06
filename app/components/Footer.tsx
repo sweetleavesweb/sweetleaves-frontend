@@ -3,6 +3,16 @@ import Link from "next/link";
 import { GOOGLE_MAPS_URL } from "@/lib/constants";
 import { locationHref, locations } from "@/lib/locations";
 
+const HOURS = [
+  "Monday: 10am-9pm",
+  "Tuesday: 10am-9pm",
+  "Wednesday: 10am-9pm",
+  "Thursday: 10am-10pm",
+  "Friday: 10am-10pm",
+  "Saturday: 9am-10pm",
+  "Sunday: 11am-6pm",
+];
+
 export default function Footer() {
   return (
     <footer className="bg-dark-sage rounded-t-[30px] md:rounded-t-[40px] px-5 md:px-[73px] py-10 md:py-14 flex flex-col gap-10 md:gap-12 mx-4 md:mx-6">
@@ -28,7 +38,7 @@ export default function Footer() {
       </div>
 
       {/* Link columns */}
-      <div className="flex flex-col md:grid md:grid-cols-3 gap-5 md:gap-[70px] items-center md:items-start">
+      <div className="flex flex-col md:grid md:grid-cols-4 gap-5 md:gap-[70px] items-center md:items-start">
         {/* Shop */}
         <div className="flex flex-col gap-1.5 items-center md:items-start">
           <p className="font-poppins-bold text-lg text-ivory uppercase text-center md:text-left">
@@ -115,6 +125,19 @@ export default function Footer() {
           </nav>
         </div>
 
+        {/* Hours */}
+        <div className="flex flex-col gap-1.5 items-center md:items-start">
+          <p className="font-poppins-bold text-lg text-ivory uppercase text-center md:text-left">
+            Hours
+          </p>
+          <div className="flex flex-col items-center md:items-start">
+            {HOURS.map((h) => (
+              <span key={h} className="font-poppins-regular text-lg text-white">
+                {h}
+              </span>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Bottom row */}
