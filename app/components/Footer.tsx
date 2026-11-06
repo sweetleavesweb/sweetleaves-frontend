@@ -17,8 +17,8 @@ export default function Footer() {
   return (
     <footer className="bg-dark-sage rounded-t-[30px] md:rounded-t-[40px] px-5 md:px-[73px] py-10 md:py-14 flex flex-col gap-10 md:gap-12 mx-4 md:mx-6">
       {/* Top row: Logo + tagline */}
-      <div className="flex flex-col md:flex-row items-center md:items-center justify-between gap-8">
-        <div className="flex flex-col gap-2.5 items-center md:items-start">
+      <div className="flex flex-col md:grid md:grid-cols-4 items-center gap-8 md:gap-[70px]">
+        <div className="md:col-span-2 min-w-0 flex flex-col gap-2.5 items-center md:items-start">
           <p className="font-poppins-regular text-xl text-white text-center md:text-left">
             You&apos;re not lazy, you&apos;re living.
           </p>
@@ -28,11 +28,11 @@ export default function Footer() {
               alt="Sweetleaves"
               width={341}
               height={61}
-              className="md:w-[428px] md:h-[77px]"
+              className="max-w-full h-auto md:w-[428px]"
             />
           </Link>
         </div>
-        <p className="font-poppins-bold text-3xl text-light-gold leading-none text-center md:text-left">
+        <p className="md:col-span-2 font-poppins-bold text-3xl text-light-gold leading-none text-center md:text-left">
           Cannabis for real life.
         </p>
       </div>
