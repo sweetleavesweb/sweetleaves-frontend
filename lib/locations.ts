@@ -59,7 +59,7 @@ export const locations: Location[] = [
       "Easy access with dedicated curbside pickup spots and nearby parking options",
     ],
     gardenClubDescription:
-      "Points add up automatically when you use your email at checkout. You must be subscribed to our marketing communications to be in the Garden Club.",
+      "Points add up automatically when you use your email at checkout. Members get access to exclusive giveaways, sweepstakes, and discounts! You must be subscribed to our marketing communications to be in the Garden Club.",
     googleMapsUrl: GOOGLE_MAPS_URL,
     appleMapsUrl: APPLE_MAPS_URL,
   },
@@ -83,7 +83,7 @@ export const locations: Location[] = [
     ],
     parking: ["Street parking and dedicated lot available."],
     about:
-      "Located conveniently on Wayzata Blvd, Sweetleaves proudly serves as a premier destination for cannabis. Whether you are new to cannabis or know exactly what you need, our team is here to help you find what's right for you and are deeply committed to our Minneapolis community.",
+      "Located conveniently on Wayzata Blvd—just off I-394 and Plymouth Road, right across the highway from Ridgedale Center—Sweetleaves proudly serves as a premier destination for cannabis. Whether you are new to cannabis or know exactly what you need, our team is here to help you find what's right for you and are deeply committed to our Minneapolis community.",
     highlights: [
       "Recreational and medical cannabis offerings",
       "Delivery available",
