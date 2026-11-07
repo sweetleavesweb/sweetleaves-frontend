@@ -1,6 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
-import { locationHref, locations } from "@/lib/locations";
+import LocationButtons from "../../components/LocationButtons";
 
 export default function ContactCard() {
   return (
@@ -29,17 +28,7 @@ export default function ContactCard() {
           <p>Find the address, hours, phone, and parking for each store.</p>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-          {locations.map((l) => (
-            <Link
-              key={l.slug}
-              href={locationHref(l.slug)}
-              className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity text-center"
-            >
-              {l.name}
-            </Link>
-          ))}
-        </div>
+        <LocationButtons />
       </div>
     </section>
   );
