@@ -83,7 +83,7 @@ export const locations: Location[] = [
     ],
     parking: ["Street parking and dedicated lot available."],
     about:
-      "Located conveniently on Wayzata Blvd—just off I-394 and Plymouth Road, right across the highway from Ridgedale Center—Sweetleaves proudly serves as a premier destination for cannabis. Whether you are new to cannabis or know exactly what you need, our team is here to help you find what's right for you and are deeply committed to our Minneapolis community.",
+      "Located conveniently on Wayzata Blvd—just off I-394 and Plymouth Road, right across the highway from Ridgedale Center—Sweetleaves proudly serves as a premier destination for cannabis. Whether you are new to cannabis or know exactly what you need, our team is here to help you find what's right for you and are deeply committed to our community.",
     highlights: [
       "Recreational and medical cannabis offerings",
       "Delivery available",
