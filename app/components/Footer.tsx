@@ -4,13 +4,13 @@ import { GOOGLE_MAPS_URL } from "@/lib/constants";
 import { locationHref, locations } from "@/lib/locations";
 
 const HOURS = [
-  "Monday: 10am-9pm",
-  "Tuesday: 10am-9pm",
-  "Wednesday: 10am-9pm",
-  "Thursday: 10am-10pm",
-  "Friday: 10am-10pm",
-  "Saturday: 9am-10pm",
-  "Sunday: 11am-6pm",
+  "Monday: 10am–10pm",
+  "Tuesday: 10am–10pm",
+  "Wednesday: 10am–10pm",
+  "Thursday: 10am–10pm",
+  "Friday: 10am–10pm",
+  "Saturday: 10am–10pm",
+  "Sunday: 11am–6pm",
 ];
 
 export default function Footer() {
