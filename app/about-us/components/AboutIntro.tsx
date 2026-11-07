@@ -23,7 +23,6 @@ export default function AboutIntro() {
           </p>
         </div>
         <div className="flex flex-col gap-3 items-center lg:items-start w-full">
-          <h2 className="font-poppins-bold text-2xl text-dark-green">Locations</h2>
           <LocationButtons />
         </div>
       </div>
