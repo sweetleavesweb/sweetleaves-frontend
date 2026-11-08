@@ -125,13 +125,6 @@ export const locations: Location[] = [
   },
 ];
 
-export const LOCATION_FAQ_QUESTIONS = [
-  "What forms of payment do you accept?",
-  "Do I need a medical card?",
-  "What forms of IDs are accepted?",
-  "Can I order online for pickup?",
-];
-
 export function locationHref(slug: string) {
   return `/location/${slug}/`;
 }

@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import {
-  LOCATION_FAQ_QUESTIONS,
   locationCopy,
   locationHref,
   locations,
   pickupHref,
 } from "@/lib/locations";
-import { getFaqsByQuestion } from "@/lib/faq";
+import { getFaqsBySection } from "@/lib/faq";
 import FaqSection from "@/app/components/FaqSection";
 import GardenClubPromo from "@/app/components/GardenClubPromo";
 import HowToShop from "@/app/components/HowToShop";
@@ -39,7 +38,7 @@ export default async function LocationPage({ params }: Props) {
   const location = locations.find((l) => l.slug === slug);
   if (!location) notFound();
 
-  const faqs = await getFaqsByQuestion(LOCATION_FAQ_QUESTIONS);
+  const faqs = await getFaqsBySection("locations");
   const copy = locationCopy(location);
   const isOpen = location.status === "open";
 
