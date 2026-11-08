@@ -29,9 +29,9 @@ export const NAV_LINKS: NavItem[] = [
   { label: "Resources", items: [
     { href: "/about-us/", label: "About" },
     { href: "/blog/", label: "Blog" },
-    { href: "/medical-card/", label: "How to get your Medical Card in MN" }
+    { href: "/medical-card/", label: "How to get your Medical Card in MN" },
+    { href: "/contact/", label: "Contact" },
   ]},
   { label: "Locations", items: locations.map((l) => ({ href: locationHref(l.slug), label: l.name })) },
   { href: "/loyalty/", label: "Rewards" },
-  { href: "/contact/", label: "Contact" },
 ];
