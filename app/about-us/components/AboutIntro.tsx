@@ -3,8 +3,8 @@ import LocationButtons from "../../components/LocationButtons";
 
 export default function AboutIntro() {
   return (
-    <section className="bg-parchment border border-sage rounded-[40px] flex flex-col lg:flex-row gap-8 lg:gap-[90px] items-center justify-end p-5">
-      <div className="flex flex-col gap-8 items-center lg:items-start">
+    <section className="bg-parchment border border-sage rounded-[40px] flex flex-col lg:flex-row gap-8 lg:gap-12 xl:gap-[90px] items-center p-5">
+      <div className="lg:flex-1 min-w-0 flex flex-col gap-8 items-center lg:items-start">
         <div className="font-poppins-regular text-lg text-dark-green text-center lg:text-left">
           <p>
             When Minnesota legalized recreational cannabis in August 2023, we saw
@@ -22,9 +22,7 @@ export default function AboutIntro() {
             fit seamlessly into real life.
           </p>
         </div>
-        <div className="flex flex-col gap-3 items-center lg:items-start w-full">
-          <LocationButtons />
-        </div>
+        <LocationButtons />
       </div>
       <Image
         src="/about/store-interior.png"
@@ -32,7 +30,7 @@ export default function AboutIntro() {
         width={625}
         height={435}
         sizes="(max-width: 1024px) 100vw, 625px"
-        className="rounded-[30px] object-cover w-full lg:w-[625px] h-auto lg:h-[435px] shrink-0"
+        className="rounded-[30px] object-cover w-full lg:w-1/2 lg:max-w-[625px] h-auto lg:h-[435px]"
       />
     </section>
   );
