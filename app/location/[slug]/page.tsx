@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { LOCATION_FAQ_QUESTIONS, locationHref, locations } from "@/lib/locations";
+import {
+  LOCATION_FAQ_QUESTIONS,
+  locationCopy,
+  locationHref,
+  locations,
+  pickupHref,
+} from "@/lib/locations";
 import { getFaqsByQuestion } from "@/lib/faq";
 import FaqSection from "@/app/components/FaqSection";
 import GardenClubPromo from "@/app/components/GardenClubPromo";
 import HowToShop from "@/app/components/HowToShop";
 import AboutLocation from "../components/AboutLocation";
+import ComingSoonBanner from "../components/ComingSoonBanner";
 import FindUs from "../components/FindUs";
 
 interface Props {
@@ -22,7 +29,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!location) return {};
   return {
     title: { absolute: location.metaTitle },
-    description: location.metaDescription,
+    description: locationCopy(location).metaDescription,
     alternates: { canonical: locationHref(location.slug) },
   };
 }
@@ -33,6 +40,8 @@ export default async function LocationPage({ params }: Props) {
   if (!location) notFound();
 
   const faqs = await getFaqsByQuestion(LOCATION_FAQ_QUESTIONS);
+  const copy = locationCopy(location);
+  const isOpen = location.status === "open";
 
   return (
     <div className="relative min-h-screen">
@@ -45,9 +54,10 @@ export default async function LocationPage({ params }: Props) {
             Sweetleaves {location.name}
           </h2>
         </section>
+        {!isOpen && <ComingSoonBanner name={location.name} />}
         <FindUs location={location} />
-        <AboutLocation location={location} />
-        <HowToShop />
+        <AboutLocation about={copy.about} highlights={copy.highlights} />
+        {isOpen && <HowToShop pickupHref={pickupHref(location)} />}
         <GardenClubPromo description={location.gardenClubDescription} />
         {faqs.length > 0 && <FaqSection faqs={faqs} />}
       </div>

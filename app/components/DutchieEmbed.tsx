@@ -5,14 +5,13 @@ import { useEffect, useRef } from "react";
 interface Props {
   dutchieParams?: Record<string, string>;
   scriptSrc?: string;
-  delivery?: boolean;
+  // Extra query params for the Dutchie script itself (not the page URL).
+  scriptParams?: Record<string, string>;
 }
 
 const REC_SCRIPT_SRC = "https://dutchie.com/api/v2/embedded-menu/65ae80f7dbecc7000934725c.js";
-// Opens the menu on the delivery address search instead of the pickup menu.
-const REC_DELIVERY_SCRIPT_SRC = `${REC_SCRIPT_SRC}?chainLocations=true&searchMethod=deliveryArea`;
 
-export default function DutchieEmbed({ dutchieParams, scriptSrc, delivery }: Props) {
+export default function DutchieEmbed({ dutchieParams, scriptSrc, scriptParams }: Props) {
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -37,7 +36,11 @@ export default function DutchieEmbed({ dutchieParams, scriptSrc, delivery }: Pro
 
     const s = document.createElement("script");
     s.id = "dutchie--embed__script";
-    s.src = scriptSrc ?? (delivery ? REC_DELIVERY_SCRIPT_SRC : REC_SCRIPT_SRC);
+    const src = new URL(scriptSrc ?? REC_SCRIPT_SRC);
+    for (const [key, value] of Object.entries(scriptParams ?? {})) {
+      src.searchParams.set(key, value);
+    }
+    s.src = src.toString();
     s.async = true;
     s.defer = true;
     container.appendChild(s);
@@ -51,7 +54,7 @@ export default function DutchieEmbed({ dutchieParams, scriptSrc, delivery }: Pro
       }
       window.history.replaceState(null, "", cleanUrl.toString());
     };
-  }, [dutchieParams, scriptSrc, delivery]);
+  }, [dutchieParams, scriptSrc, scriptParams]);
 
   return <div ref={rootRef} />;
 }

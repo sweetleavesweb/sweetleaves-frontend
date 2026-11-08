@@ -6,6 +6,11 @@ export const metadata: Metadata = {
   alternates: { canonical: "/shop-recreational-cannabis/" },
 };
 
+// Dutchie's multi-location embed: lets dtche[location] preselect a store.
+const CHAIN_SCRIPT_PARAMS = { chainLocations: "true" };
+// Opens on the delivery address search, which picks the store by address.
+const DELIVERY_SCRIPT_PARAMS = { ...CHAIN_SCRIPT_PARAMS, searchMethod: "deliveryArea" };
+
 interface Props {
   searchParams: Promise<Record<string, string | string[] | undefined>>;
 }
@@ -17,6 +22,12 @@ export default async function ShopPage({ searchParams }: Props) {
       .filter(([key]) => key.startsWith("dtche"))
       .map(([key, value]) => [key, Array.isArray(value) ? value[0] : (value ?? "")])
   );
+  const scriptParams =
+    params.delivery === "1"
+      ? DELIVERY_SCRIPT_PARAMS
+      : dutchieParams["dtche[location]"]
+        ? CHAIN_SCRIPT_PARAMS
+        : undefined;
 
   return (
     <div className="flex flex-col flex-1 md:max-w-[1365px] md:mx-auto md:px-6 md:py-8">
@@ -26,7 +37,7 @@ export default async function ShopPage({ searchParams }: Props) {
       <div className="flex-1 pb-8">
         <DutchieEmbed
           dutchieParams={Object.keys(dutchieParams).length ? dutchieParams : undefined}
-          delivery={params.delivery === "1"}
+          scriptParams={scriptParams}
         />
       </div>
     </div>

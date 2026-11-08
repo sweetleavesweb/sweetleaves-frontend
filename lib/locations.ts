@@ -1,18 +1,30 @@
 import { APPLE_MAPS_URL, GOOGLE_MAPS_URL } from "./constants";
 
-export interface Location {
+export type LocationStatus = "coming-soon" | "open";
+
+interface LocationCopy {
+  metaDescription: string;
+  about: string;
+  highlights: string[];
+}
+
+export interface Location extends LocationCopy {
   slug: string;
   name: string;
+  // "coming-soon" shows the pre-launch banner and copy and hides How to Shop.
+  status: LocationStatus;
+  // Dutchie store slug (from dutchie.com/embedded-menu/<slug>) used to preselect
+  // this store for pickup. null falls back to the default rec menu.
+  dutchieStore: string | null;
+  // Shown instead of the regular copy while status is "coming-soon".
+  comingSoonCopy?: LocationCopy;
   metaTitle: string;
-  metaDescription: string;
   eyebrow: string;
   findUsHeading: string;
   address: string;
   phone?: string;
   hours: string[];
   parking: string[];
-  about: string;
-  highlights: string[];
   gardenClubDescription: string;
   googleMapsUrl: string;
   appleMapsUrl: string;
@@ -30,6 +42,8 @@ export const locations: Location[] = [
   {
     slug: "minneapolis",
     name: "Minneapolis",
+    status: "open",
+    dutchieStore: "sweet-leaves-a-cannabis-company",
     metaTitle: "Sweetleaves | Medical & Recreational Dispensary in Minneapolis, MN",
     metaDescription:
       "Visit Sweetleaves in North Loop, Minneapolis for premium cannabis, convenient online ordering for pickup or delivery, and expert budtenders.",
@@ -66,6 +80,11 @@ export const locations: Location[] = [
   {
     slug: "minnetonka",
     name: "Minnetonka",
+    // TODO(launch): flip to "open" once the Minnetonka store is live in Dutchie.
+    status: "coming-soon",
+    // TODO(launch): PLACEHOLDER. Set to Minnetonka's Dutchie store slug before
+    // flipping status to "open", or Pickup will open the default (Minneapolis) menu.
+    dutchieStore: null,
     metaTitle: "Sweetleaves | Medical & Recreational Dispensary in Minnetonka, Minnesota",
     metaDescription:
       "Explore Sweetleaves dispensary in Minnetonka for top-tier cannabis products, easy online ordering for pickup or delivery, and expert service.",
@@ -89,6 +108,17 @@ export const locations: Location[] = [
       "Delivery available",
       "Easy to reach on Wayzata Blvd, featuring quick highway access and simple parking",
     ],
+    comingSoonCopy: {
+      metaDescription:
+        "Sweetleaves is coming soon to Minnetonka on Wayzata Blvd, bringing medical and recreational cannabis, expert budtenders, and online ordering for pickup or delivery.",
+      about:
+        "Sweetleaves is coming soon to Wayzata Blvd—just off I-394 and Plymouth Road, right across the highway from Ridgedale Center. Whether you are new to cannabis or know exactly what you need, our team will be here to help you find what's right for you.",
+      highlights: [
+        "Recreational and medical cannabis offerings",
+        "Online ordering for pickup and delivery once we open",
+        "Easy to reach on Wayzata Blvd, featuring quick highway access and simple parking",
+      ],
+    },
     gardenClubDescription:
       "Points add up automatically when you use your email at checkout. Members get access to exclusive giveaways, sweepstakes, and discounts! You must be subscribed to our marketing communications to be in the Garden Club.",
     ...mapsSearchUrls("12970 Wayzata Blvd, Minnetonka, MN 55305"),
@@ -104,4 +134,18 @@ export const LOCATION_FAQ_QUESTIONS = [
 
 export function locationHref(slug: string) {
   return `/location/${slug}/`;
+}
+
+export function locationCopy(location: Location): LocationCopy {
+  return location.status === "coming-soon" && location.comingSoonCopy
+    ? location.comingSoonCopy
+    : location;
+}
+
+export const REC_MENU_HREF = "/shop-recreational-cannabis/";
+
+export function pickupHref(location: Location) {
+  return location.dutchieStore
+    ? `${REC_MENU_HREF}?dtche%5Blocation%5D=${encodeURIComponent(location.dutchieStore)}`
+    : REC_MENU_HREF;
 }

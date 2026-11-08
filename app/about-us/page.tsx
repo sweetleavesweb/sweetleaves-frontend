@@ -4,6 +4,7 @@ import HowToShop from "../components/HowToShop";
 import WhatWeStandFor from "./components/WhatWeStandFor";
 import FaqSection from "../components/FaqSection";
 import { getCommonFaqs } from "@/lib/faq";
+import { REC_MENU_HREF } from "@/lib/locations";
 
 export const metadata: Metadata = {
   title: "About Us",
@@ -24,7 +25,7 @@ export default async function AboutPage() {
           </h1>
         </section>
         <AboutIntro />
-        <HowToShop />
+        <HowToShop pickupHref={REC_MENU_HREF} />
         <WhatWeStandFor />
         <FaqSection faqs={commonFaqs} />
       </div>

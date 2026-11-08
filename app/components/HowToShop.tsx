@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { REC_MENU_HREF } from "@/lib/locations";
 
 interface ShopMethodProps {
   number: number;
@@ -51,19 +52,7 @@ function ShopMethod({ number, title, description, boldWord }: ShopMethodProps) {
   );
 }
 
-const METHODS: ShopMethodProps[] = [
-  {
-    number: 1,
-    title: (
-      <>
-        Online for <MenuLink href="/shop-recreational-cannabis/">Pickup</MenuLink> or{" "}
-        <MenuLink href="/shop-recreational-cannabis/?delivery=1">Delivery</MenuLink>
-      </>
-    ),
-    description:
-      "Browse our full menu and place your order from anywhere. We offer curbside.",
-    boldWord: "curbside",
-  },
+const IN_STORE_METHODS: ShopMethodProps[] = [
   {
     number: 2,
     title: "In-Store Kiosks",
@@ -77,14 +66,34 @@ const METHODS: ShopMethodProps[] = [
   },
 ];
 
-export default function HowToShop() {
+interface Props {
+  pickupHref: string;
+}
+
+export default function HowToShop({ pickupHref }: Props) {
+  const methods: ShopMethodProps[] = [
+    {
+      number: 1,
+      title: (
+        <>
+          Online for <MenuLink href={pickupHref}>Pickup</MenuLink> or{" "}
+          <MenuLink href={`${REC_MENU_HREF}?delivery=1`}>Delivery</MenuLink>
+        </>
+      ),
+      description:
+        "Browse our full menu and place your order from anywhere. We offer curbside.",
+      boldWord: "curbside",
+    },
+    ...IN_STORE_METHODS,
+  ];
+
   return (
     <section className="bg-parchment border border-sage rounded-[40px] flex flex-col gap-8 lg:gap-10 items-center px-4 lg:px-10 py-8 lg:py-10">
       <h2 className="font-poppins-bold text-3xl lg:text-display text-orange-glow text-center">
         How to Shop
       </h2>
       <div className="flex flex-col lg:flex-row gap-5 lg:gap-6 items-center lg:items-stretch w-full justify-center">
-        {METHODS.map((m) => (
+        {methods.map((m) => (
           <ShopMethod key={m.number} {...m} />
         ))}
       </div>
