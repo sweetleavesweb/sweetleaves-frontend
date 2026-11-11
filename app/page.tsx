@@ -3,6 +3,7 @@ import {
   HomeHero,
   ProductGrid,
   DealsBanner,
+  DeliveryBanner,
   StorePhoto,
   ReviewsSection,
   BlogSection,
@@ -29,10 +30,7 @@ export default async function Home() {
         <HomeHero />
         <ProductGrid />
         <DealsBanner />
-        <StorePhoto
-          src="/home/store-exterior.png"
-          alt="Sweetleaves dispensary exterior"
-        />
+        <DeliveryBanner />
 
         <div className="flex flex-col lg:flex-row gap-5 lg:gap-[30px]">
           <ReviewsSection />

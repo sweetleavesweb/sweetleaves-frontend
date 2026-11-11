@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { REC_MENU_HREF } from "@/lib/locations";
+import { REC_DELIVERY_HREF } from "@/lib/locations";
 
 interface ShopMethodProps {
   number: number;
@@ -77,7 +77,7 @@ export default function HowToShop({ pickupHref }: Props) {
       title: (
         <>
           Online for <MenuLink href={pickupHref}>Pickup</MenuLink> or{" "}
-          <MenuLink href={`${REC_MENU_HREF}?delivery=1`}>Delivery</MenuLink>
+          <MenuLink href={REC_DELIVERY_HREF}>Delivery</MenuLink>
         </>
       ),
       description:
