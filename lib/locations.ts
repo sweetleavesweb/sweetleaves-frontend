@@ -43,7 +43,8 @@ export const locations: Location[] = [
     slug: "minneapolis",
     name: "Minneapolis",
     status: "open",
-    dutchieStore: "sweet-leaves-a-cannabis-company",
+    // TEST ONLY: mock test store so Pickup never reaches the live store. Do not ship.
+    dutchieStore: "sweetleaves-test-sandbox",
     metaTitle: "Sweetleaves | Medical & Recreational Dispensary in Minneapolis, MN",
     metaDescription:
       "Visit Sweetleaves in North Loop, Minneapolis for premium cannabis, convenient online ordering for pickup or delivery, and expert budtenders.",

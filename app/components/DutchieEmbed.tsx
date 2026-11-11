@@ -9,7 +9,8 @@ interface Props {
   scriptParams?: Record<string, string>;
 }
 
-const REC_SCRIPT_SRC = "https://dutchie.com/api/v2/embedded-menu/65ae80f7dbecc7000934725c.js";
+// TEST ONLY: Dutchie mock test store with delivery enabled. Do not ship.
+const REC_SCRIPT_SRC = "https://dutchie.com/api/v2/embedded-menu/6ad7ca150ded88f0bb5e6c98.js";
 
 export default function DutchieEmbed({ dutchieParams, scriptSrc, scriptParams }: Props) {
   const rootRef = useRef<HTMLDivElement | null>(null);
