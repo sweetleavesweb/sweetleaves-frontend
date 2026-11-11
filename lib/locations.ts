@@ -106,7 +106,7 @@ export const locations: Location[] = [
     highlights: [
       "Recreational and medical cannabis offerings",
       "Delivery available",
-      "Easy to reach on Wayzata Blvd, featuring quick highway access and simple parking",
+      "Easy to reach on Wayzata Blvd, featuring quick highway access and ample parking",
     ],
     comingSoonCopy: {
       metaDescription:
@@ -116,7 +116,7 @@ export const locations: Location[] = [
       highlights: [
         "Recreational and medical cannabis offerings",
         "Online ordering for pickup and delivery once we open",
-        "Easy to reach on Wayzata Blvd, featuring quick highway access and simple parking",
+        "Easy to reach on Wayzata Blvd, featuring quick highway access and ample parking",
       ],
     },
     gardenClubDescription:
