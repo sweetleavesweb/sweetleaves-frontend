@@ -6,7 +6,7 @@ import {
   locations,
   pickupHref,
 } from "@/lib/locations";
-import { getFaqsBySection } from "@/lib/faq";
+import { getFaqsBySection, LOCATIONS_FAQ_SECTION } from "@/lib/faq";
 import FaqSection from "@/app/components/FaqSection";
 import GardenClubPromo from "@/app/components/GardenClubPromo";
 import HowToShop from "@/app/components/HowToShop";
@@ -38,7 +38,7 @@ export default async function LocationPage({ params }: Props) {
   const location = locations.find((l) => l.slug === slug);
   if (!location) notFound();
 
-  const faqs = await getFaqsBySection("locations");
+  const faqs = await getFaqsBySection(LOCATIONS_FAQ_SECTION);
   const copy = locationCopy(location);
   const isOpen = location.status === "open";
 

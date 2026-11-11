@@ -19,6 +19,9 @@ export interface FaqSection {
   faqs: FaqItem[];
 }
 
+// Tags FAQs for the location pages; not shown as a category on /faqs.
+export const LOCATIONS_FAQ_SECTION = "locations";
+
 // ---------------------------------------------------------------------------
 // Revalidation
 // ---------------------------------------------------------------------------
