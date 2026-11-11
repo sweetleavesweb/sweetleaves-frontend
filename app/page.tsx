@@ -28,8 +28,8 @@ export default async function Home() {
     <div className="relative min-h-screen overflow-hidden">
       <div className="relative z-10 max-w-[1365px] mx-auto px-4 md:px-6 py-5 md:py-8 flex flex-col gap-5 lg:gap-[30px]">
         <HomeHero />
-        <DeliveryBanner />
         <ProductGrid />
+        <DeliveryBanner />
         <DealsBanner />
 
         <div className="flex flex-col lg:flex-row gap-5 lg:gap-[30px]">
