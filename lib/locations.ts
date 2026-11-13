@@ -1,4 +1,4 @@
-import { APPLE_MAPS_URL, GOOGLE_MAPS_URL } from "./constants";
+import { APPLE_MAPS_URL, GOOGLE_MAPS_EMBED_URL, GOOGLE_MAPS_URL } from "./constants";
 
 export type LocationStatus = "coming-soon" | "open";
 
@@ -8,14 +8,20 @@ interface LocationCopy {
   highlights: string[];
 }
 
+interface DutchieStores {
+  rec: string | null;
+  med: string | null;
+}
+
 export interface Location extends LocationCopy {
   slug: string;
   name: string;
   // "coming-soon" shows the pre-launch banner and copy and hides How to Shop.
   status: LocationStatus;
-  // Dutchie store slug (from dutchie.com/embedded-menu/<slug>) used to preselect
-  // this store for pickup. null falls back to the default rec menu.
-  dutchieStore: string | null;
+  // Dutchie store slugs (from dutchie.com/embedded-menu/<slug>) used to preselect
+  // this store's rec and med menus. Med is a separate Dutchie store from rec.
+  // null falls back to the default (Minneapolis) menu.
+  dutchieStores: DutchieStores;
   // Shown instead of the regular copy while status is "coming-soon".
   comingSoonCopy?: LocationCopy;
   metaTitle: string;
@@ -27,6 +33,7 @@ export interface Location extends LocationCopy {
   parking: string[];
   gardenClubDescription: string;
   googleMapsUrl: string;
+  googleMapsEmbedUrl: string;
   appleMapsUrl: string;
 }
 
@@ -34,6 +41,7 @@ function mapsSearchUrls(address: string) {
   const query = encodeURIComponent(address);
   return {
     googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${query}`,
+    googleMapsEmbedUrl: `https://www.google.com/maps?q=${query}&output=embed`,
     appleMapsUrl: `https://maps.apple.com/?address=${query}`,
   };
 }
@@ -43,7 +51,7 @@ export const locations: Location[] = [
     slug: "minneapolis",
     name: "Minneapolis",
     status: "open",
-    dutchieStore: "sweet-leaves-a-cannabis-company",
+    dutchieStores: { rec: "sweet-leaves-a-cannabis-company", med: "sweetleaves-med" },
     metaTitle: "Sweetleaves | Medical & Recreational Dispensary in Minneapolis, MN",
     metaDescription:
       "Visit Sweetleaves in North Loop, Minneapolis for premium cannabis, convenient online ordering for pickup or delivery, and expert budtenders.",
@@ -75,6 +83,7 @@ export const locations: Location[] = [
     gardenClubDescription:
       "Points add up automatically when you use your email at checkout. Members get access to exclusive giveaways, sweepstakes, and discounts! You must be subscribed to our marketing communications to be in the Garden Club.",
     googleMapsUrl: GOOGLE_MAPS_URL,
+    googleMapsEmbedUrl: GOOGLE_MAPS_EMBED_URL,
     appleMapsUrl: APPLE_MAPS_URL,
   },
   {
@@ -82,9 +91,9 @@ export const locations: Location[] = [
     name: "Minnetonka",
     // TODO(launch): flip to "open" once the Minnetonka store is live in Dutchie.
     status: "coming-soon",
-    // TODO(launch): PLACEHOLDER. Set to Minnetonka's Dutchie store slug before
-    // flipping status to "open", or Pickup will open the default (Minneapolis) menu.
-    dutchieStore: null,
+    // TODO(launch): PLACEHOLDER. Set to Minnetonka's rec and med Dutchie store slugs
+    // before flipping status to "open", or the shop buttons open the Minneapolis menus.
+    dutchieStores: { rec: null, med: null },
     metaTitle: "Sweetleaves | Medical & Recreational Dispensary in Minnetonka, Minnesota",
     metaDescription:
       "Explore Sweetleaves dispensary in Minnetonka for top-tier cannabis products, easy online ordering for pickup or delivery, and expert service.",
@@ -136,11 +145,10 @@ export function locationCopy(location: Location): LocationCopy {
 }
 
 export const REC_MENU_HREF = "/shop-recreational-cannabis/";
-// Opens the rec menu on the delivery address search.
-export const REC_DELIVERY_HREF = `${REC_MENU_HREF}?delivery=1`;
+export const MEDICAL_MENU_HREF = "/shop-medical-cannabis/";
 
-export function pickupHref(location: Location) {
-  return location.dutchieStore
-    ? `${REC_MENU_HREF}?dtche%5Blocation%5D=${encodeURIComponent(location.dutchieStore)}`
-    : REC_MENU_HREF;
+export function storeMenuHref(menuHref: string, dutchieStore: string | null) {
+  return dutchieStore
+    ? `${menuHref}?dtche%5Blocation%5D=${encodeURIComponent(dutchieStore)}`
+    : menuHref;
 }

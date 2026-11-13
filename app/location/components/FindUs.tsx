@@ -20,12 +20,10 @@ function Detail({ label, children }: DetailProps) {
 }
 
 export default function FindUs({ location }: Props) {
-  const mapEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(location.address)}&output=embed`;
-
   return (
     <section className="bg-dark-sage rounded-[40px] flex flex-col-reverse lg:flex-row gap-8 lg:gap-20 items-center p-5">
       <iframe
-        src={mapEmbedUrl}
+        src={location.googleMapsEmbedUrl}
         title={`Map to Sweetleaves ${location.name}`}
         className="rounded-[30px] border-0 w-full lg:w-[625px] aspect-[625/695] lg:aspect-auto lg:h-[695px] shrink-0"
         loading="lazy"
