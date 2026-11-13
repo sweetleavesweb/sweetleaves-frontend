@@ -136,8 +136,7 @@ export function locationCopy(location: Location): LocationCopy {
 }
 
 export const REC_MENU_HREF = "/shop-recreational-cannabis/";
-// Opens the rec menu on the delivery address search.
-export const REC_DELIVERY_HREF = `${REC_MENU_HREF}?delivery=1`;
+export const MEDICAL_MENU_HREF = "/shop-medical-cannabis/";
 
 export function pickupHref(location: Location) {
   return location.dutchieStore

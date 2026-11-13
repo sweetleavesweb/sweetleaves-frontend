@@ -1,21 +1,24 @@
 import Link from "next/link";
-import { REC_DELIVERY_HREF } from "@/lib/locations";
+import { MEDICAL_MENU_HREF } from "@/lib/locations";
 
 interface ShopMethodProps {
   number: number;
-  title: React.ReactNode;
+  title: string;
   description: string;
   boldWord?: string;
 }
 
-interface MenuLinkProps {
+interface ShopButtonProps {
   href: string;
   children: string;
 }
 
-function MenuLink({ href, children }: MenuLinkProps) {
+function ShopButton({ href, children }: ShopButtonProps) {
   return (
-    <Link href={href} className="underline decoration-2 underline-offset-4 hover:text-orange-glow transition-colors">
+    <Link
+      href={href}
+      className="bg-orange-glow text-white font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity text-center"
+    >
       {children}
     </Link>
   );
@@ -52,7 +55,14 @@ function ShopMethod({ number, title, description, boldWord }: ShopMethodProps) {
   );
 }
 
-const IN_STORE_METHODS: ShopMethodProps[] = [
+const METHODS: ShopMethodProps[] = [
+  {
+    number: 1,
+    title: "Online for Pickup or Delivery",
+    description:
+      "Browse our full menu and place your order from anywhere. We offer curbside.",
+    boldWord: "curbside",
+  },
   {
     number: 2,
     title: "In-Store Kiosks",
@@ -67,35 +77,23 @@ const IN_STORE_METHODS: ShopMethodProps[] = [
 ];
 
 interface Props {
-  pickupHref: string;
+  recreationalHref: string;
 }
 
-export default function HowToShop({ pickupHref }: Props) {
-  const methods: ShopMethodProps[] = [
-    {
-      number: 1,
-      title: (
-        <>
-          Online for <MenuLink href={pickupHref}>Pickup</MenuLink> or{" "}
-          <MenuLink href={REC_DELIVERY_HREF}>Delivery</MenuLink>
-        </>
-      ),
-      description:
-        "Browse our full menu and place your order from anywhere. We offer curbside.",
-      boldWord: "curbside",
-    },
-    ...IN_STORE_METHODS,
-  ];
-
+export default function HowToShop({ recreationalHref }: Props) {
   return (
     <section className="bg-parchment border border-sage rounded-[40px] flex flex-col gap-8 lg:gap-10 items-center px-4 lg:px-10 py-8 lg:py-10">
       <h2 className="font-poppins-bold text-3xl lg:text-display text-orange-glow text-center">
         How to Shop
       </h2>
       <div className="flex flex-col lg:flex-row gap-5 lg:gap-6 items-center lg:items-stretch w-full justify-center">
-        {methods.map((m) => (
+        {METHODS.map((m) => (
           <ShopMethod key={m.number} {...m} />
         ))}
+      </div>
+      <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+        <ShopButton href={MEDICAL_MENU_HREF}>Shop Medical</ShopButton>
+        <ShopButton href={recreationalHref}>Shop Recreational</ShopButton>
       </div>
     </section>
   );

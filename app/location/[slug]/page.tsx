@@ -56,7 +56,7 @@ export default async function LocationPage({ params }: Props) {
         {!isOpen && <ComingSoonBanner name={location.name} />}
         <FindUs location={location} />
         <AboutLocation about={copy.about} highlights={copy.highlights} />
-        {isOpen && <HowToShop pickupHref={pickupHref(location)} />}
+        {isOpen && <HowToShop recreationalHref={pickupHref(location)} />}
         <GardenClubPromo description={location.gardenClubDescription} />
         {faqs.length > 0 && <FaqSection faqs={faqs} />}
       </div>

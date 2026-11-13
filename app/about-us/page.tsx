@@ -25,7 +25,7 @@ export default async function AboutPage() {
           </h1>
         </section>
         <AboutIntro />
-        <HowToShop pickupHref={REC_MENU_HREF} />
+        <HowToShop recreationalHref={REC_MENU_HREF} />
         <WhatWeStandFor />
         <FaqSection faqs={commonFaqs} />
       </div>

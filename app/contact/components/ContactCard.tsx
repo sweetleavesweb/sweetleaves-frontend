@@ -7,7 +7,7 @@ export default function ContactCard() {
       {/* aspect ratio on mobile; stretches to content height on desktop via flex */}
       <div className="relative w-full lg:w-[45%] aspect-[625/435] lg:aspect-auto lg:self-stretch lg:min-h-[435px] shrink-0 rounded-[30px] overflow-hidden">
         <Image
-          src="/about/store-interior.png"
+          src="/contact/store-interior.jpg"
           alt="Inside Sweetleaves dispensary"
           fill
           sizes="(max-width: 1024px) 100vw, 45vw"
