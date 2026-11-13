@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { REC_SCRIPT_SRC } from "@/lib/dutchie";
 
 interface Props {
   dutchieParams?: Record<string, string>;
@@ -8,8 +9,6 @@ interface Props {
   // Extra query params for the Dutchie script itself (not the page URL).
   scriptParams?: Record<string, string>;
 }
-
-const REC_SCRIPT_SRC = "https://dutchie.com/api/v2/embedded-menu/65ae80f7dbecc7000934725c.js";
 
 export default function DutchieEmbed({ dutchieParams, scriptSrc, scriptParams }: Props) {
   const rootRef = useRef<HTMLDivElement | null>(null);
