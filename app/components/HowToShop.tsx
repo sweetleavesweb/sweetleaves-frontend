@@ -7,6 +7,22 @@ interface ShopMethodProps {
   boldWord?: string;
 }
 
+interface ShopButtonProps {
+  href: string;
+  children: string;
+}
+
+function ShopButton({ href, children }: ShopButtonProps) {
+  return (
+    <Link
+      href={href}
+      className="bg-orange-glow text-white font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity text-center"
+    >
+      {children}
+    </Link>
+  );
+}
+
 function ShopMethod({ number, title, description, boldWord }: ShopMethodProps) {
   return (
     <div className="relative flex flex-col items-center min-w-0 lg:flex-1">
@@ -41,7 +57,7 @@ function ShopMethod({ number, title, description, boldWord }: ShopMethodProps) {
 const METHODS: ShopMethodProps[] = [
   {
     number: 1,
-    title: "Online for Pickup",
+    title: "Online for Pickup or Delivery",
     description:
       "Browse our full menu and place your order from anywhere. We offer curbside.",
     boldWord: "curbside",
@@ -59,7 +75,12 @@ const METHODS: ShopMethodProps[] = [
   },
 ];
 
-export default function HowToShop() {
+interface Props {
+  medicalHref: string;
+  recreationalHref: string;
+}
+
+export default function HowToShop({ medicalHref, recreationalHref }: Props) {
   return (
     <section className="bg-parchment border border-sage rounded-[40px] flex flex-col gap-8 lg:gap-10 items-center px-4 lg:px-10 py-8 lg:py-10">
       <h2 className="font-poppins-bold text-3xl lg:text-display text-orange-glow text-center">
@@ -70,12 +91,10 @@ export default function HowToShop() {
           <ShopMethod key={m.number} {...m} />
         ))}
       </div>
-      <Link
-        href="/about-us/#find-us"
-        className="bg-light-gold text-dark-green font-poppins-semibold uppercase text-base px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity text-center w-full max-w-[356px]"
-      >
-        Plan Your Visit
-      </Link>
+      <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+        <ShopButton href={medicalHref}>Shop Medical</ShopButton>
+        <ShopButton href={recreationalHref}>Shop Recreational</ShopButton>
+      </div>
     </section>
   );
 }
