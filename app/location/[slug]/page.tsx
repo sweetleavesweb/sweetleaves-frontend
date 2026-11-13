@@ -4,7 +4,9 @@ import {
   locationCopy,
   locationHref,
   locations,
-  pickupHref,
+  MEDICAL_MENU_HREF,
+  REC_MENU_HREF,
+  storeMenuHref,
 } from "@/lib/locations";
 import { getFaqsBySection, LOCATIONS_FAQ_SECTION } from "@/lib/faq";
 import FaqSection from "@/app/components/FaqSection";
@@ -56,7 +58,12 @@ export default async function LocationPage({ params }: Props) {
         {!isOpen && <ComingSoonBanner name={location.name} />}
         <FindUs location={location} />
         <AboutLocation about={copy.about} highlights={copy.highlights} />
-        {isOpen && <HowToShop recreationalHref={pickupHref(location)} />}
+        {isOpen && (
+          <HowToShop
+            medicalHref={storeMenuHref(MEDICAL_MENU_HREF, location.dutchieStores.med)}
+            recreationalHref={storeMenuHref(REC_MENU_HREF, location.dutchieStores.rec)}
+          />
+        )}
         <GardenClubPromo description={location.gardenClubDescription} />
         {faqs.length > 0 && <FaqSection faqs={faqs} />}
       </div>

@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { MEDICAL_MENU_HREF } from "@/lib/locations";
 
 interface ShopMethodProps {
   number: number;
@@ -77,10 +76,11 @@ const METHODS: ShopMethodProps[] = [
 ];
 
 interface Props {
+  medicalHref: string;
   recreationalHref: string;
 }
 
-export default function HowToShop({ recreationalHref }: Props) {
+export default function HowToShop({ medicalHref, recreationalHref }: Props) {
   return (
     <section className="bg-parchment border border-sage rounded-[40px] flex flex-col gap-8 lg:gap-10 items-center px-4 lg:px-10 py-8 lg:py-10">
       <h2 className="font-poppins-bold text-3xl lg:text-display text-orange-glow text-center">
@@ -92,7 +92,7 @@ export default function HowToShop({ recreationalHref }: Props) {
         ))}
       </div>
       <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
-        <ShopButton href={MEDICAL_MENU_HREF}>Shop Medical</ShopButton>
+        <ShopButton href={medicalHref}>Shop Medical</ShopButton>
         <ShopButton href={recreationalHref}>Shop Recreational</ShopButton>
       </div>
     </section>
