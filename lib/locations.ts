@@ -1,4 +1,4 @@
-import { APPLE_MAPS_URL, GOOGLE_MAPS_URL } from "./constants";
+import { APPLE_MAPS_URL, GOOGLE_MAPS_EMBED_URL, GOOGLE_MAPS_URL } from "./constants";
 
 export type LocationStatus = "coming-soon" | "open";
 
@@ -33,6 +33,7 @@ export interface Location extends LocationCopy {
   parking: string[];
   gardenClubDescription: string;
   googleMapsUrl: string;
+  googleMapsEmbedUrl: string;
   appleMapsUrl: string;
 }
 
@@ -40,6 +41,7 @@ function mapsSearchUrls(address: string) {
   const query = encodeURIComponent(address);
   return {
     googleMapsUrl: `https://www.google.com/maps/search/?api=1&query=${query}`,
+    googleMapsEmbedUrl: `https://www.google.com/maps?q=${query}&output=embed`,
     appleMapsUrl: `https://maps.apple.com/?address=${query}`,
   };
 }
@@ -81,6 +83,7 @@ export const locations: Location[] = [
     gardenClubDescription:
       "Points add up automatically when you use your email at checkout. Members get access to exclusive giveaways, sweepstakes, and discounts! You must be subscribed to our marketing communications to be in the Garden Club.",
     googleMapsUrl: GOOGLE_MAPS_URL,
+    googleMapsEmbedUrl: GOOGLE_MAPS_EMBED_URL,
     appleMapsUrl: APPLE_MAPS_URL,
   },
   {
