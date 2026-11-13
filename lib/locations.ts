@@ -66,7 +66,7 @@ export const locations: Location[] = [
       "Wednesday: 10am–9pm",
       "Thursday: 10am–10pm",
       "Friday: 10am–10pm",
-      "Saturday: 9am–10pm",
+      "Saturday: 10am–10pm",
       "Sunday: 11am–6pm",
     ],
     parking: [
