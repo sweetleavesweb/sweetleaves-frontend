@@ -1,4 +1,5 @@
-export const REC_SCRIPT_SRC = "https://dutchie.com/api/v2/embedded-menu/65ae80f7dbecc7000934725c.js";
+// TEST ONLY: Dutchie mock test store with delivery enabled. Do not ship.
+export const REC_SCRIPT_SRC = "https://dutchie.com/api/v2/embedded-menu/6ad7ca150ded88f0bb5e6c98.js";
 export const MED_SCRIPT_SRC =
   "https://dutchie.com/api/v2/embedded-menu/6a3096683cf9ab736cb06f1b.js?menuType=med";
 
