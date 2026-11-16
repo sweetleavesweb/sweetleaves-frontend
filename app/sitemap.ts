@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { brands } from "@/lib/brands";
 import { products } from "@/lib/products";
+import { locationHref, locations } from "@/lib/locations";
 
 const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? "https://sweetleaves.co";
 
@@ -48,5 +49,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 1.0,
   }));
 
-  return [...statics, ...brandEntries, ...productEntries];
+  const locationEntries = locations.map((location) => ({
+    url: `${BASE}${locationHref(location.slug)}`,
+    lastModified,
+    changeFrequency: "monthly" as const,
+    priority: 0.9,
+  }));
+
+  return [...statics, ...locationEntries, ...brandEntries, ...productEntries];
 }

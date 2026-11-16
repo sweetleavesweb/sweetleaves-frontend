@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getFaqSections } from "@/lib/faq";
+import { getFaqSections, LOCATIONS_FAQ_SECTION } from "@/lib/faq";
 import FaqAccordion from "./components/FaqAccordion";
 import CareersCard from "./components/CareersCard";
 import StillHaveQuestionsCard from "./components/StillHaveQuestionsCard";
@@ -12,7 +12,9 @@ export const metadata: Metadata = {
 };
 
 export default async function FaqPage() {
-  const sections = await getFaqSections();
+  const sections = (await getFaqSections()).filter(
+    (section) => section.slug !== LOCATIONS_FAQ_SECTION
+  );
 
   return (
     <div className="max-w-[1366px] mx-auto px-[20px] md:px-[37px] py-8 flex flex-col gap-[30px] items-center">

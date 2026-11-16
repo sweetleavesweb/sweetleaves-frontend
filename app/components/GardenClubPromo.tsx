@@ -1,7 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export default function GardenClubPromo() {
+interface Props {
+  description: string;
+}
+
+export default function GardenClubPromo({ description }: Props) {
   return (
     <section className="bg-dark-green rounded-[40px] flex flex-col gap-[5px] items-center justify-center px-10 py-9 min-h-[422px] md:min-h-[508px]">
       <Link href="/loyalty/">
@@ -20,11 +24,7 @@ export default function GardenClubPromo() {
         <p className="font-poppins-bold text-[30px] md:text-display uppercase">
           $1 Spent = 1 Point
         </p>
-        <p className="font-poppins-regular text-[18px] mt-3">
-          Points add up automatically when you use your phone number or email at
-          checkout. You must be subscribed to our marketing communications to be
-          in the Garden Club.
-        </p>
+        <p className="font-poppins-regular text-[18px] mt-3">{description}</p>
       </div>
 
       <Link

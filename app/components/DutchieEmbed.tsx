@@ -1,15 +1,16 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { REC_SCRIPT_SRC } from "@/lib/dutchie";
 
 interface Props {
   dutchieParams?: Record<string, string>;
   scriptSrc?: string;
+  // Extra query params for the Dutchie script itself (not the page URL).
+  scriptParams?: Record<string, string>;
 }
 
-const REC_SCRIPT_SRC = "https://dutchie.com/api/v2/embedded-menu/65ae80f7dbecc7000934725c.js";
-
-export default function DutchieEmbed({ dutchieParams, scriptSrc }: Props) {
+export default function DutchieEmbed({ dutchieParams, scriptSrc, scriptParams }: Props) {
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -34,7 +35,11 @@ export default function DutchieEmbed({ dutchieParams, scriptSrc }: Props) {
 
     const s = document.createElement("script");
     s.id = "dutchie--embed__script";
-    s.src = scriptSrc ?? REC_SCRIPT_SRC;
+    const src = new URL(scriptSrc ?? REC_SCRIPT_SRC);
+    for (const [key, value] of Object.entries(scriptParams ?? {})) {
+      src.searchParams.set(key, value);
+    }
+    s.src = src.toString();
     s.async = true;
     s.defer = true;
     container.appendChild(s);
@@ -48,7 +53,7 @@ export default function DutchieEmbed({ dutchieParams, scriptSrc }: Props) {
       }
       window.history.replaceState(null, "", cleanUrl.toString());
     };
-  }, [dutchieParams, scriptSrc]);
+  }, [dutchieParams, scriptSrc, scriptParams]);
 
   return <div ref={rootRef} />;
 }
