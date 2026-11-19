@@ -4,6 +4,7 @@ import { cookies } from "next/headers";
 import { GoogleAnalytics, GoogleTagManager } from "@next/third-parties/google";
 import AgeGate from "./components/AgeGate";
 import AlpineIQProvider from "./components/AlpineIQProvider";
+import Clarity from "./components/Clarity";
 import PageViewTracker from "./components/PageViewTracker";
 import GardenClubPopup from "./components/GardenClubPopup";
 import MetaPixel from "./components/MetaPixel";
@@ -56,6 +57,7 @@ export default async function RootLayout({
       <GoogleAnalytics gaId="G-3M9FSQWF9T" />
       <body className={`${poppins.variable} antialiased`}>
         <MetaPixel />
+        <Clarity />
         <AgeGate initialVerified={initialVerified}>
           <div aria-hidden="true" className="fixed inset-0 -z-10 bg-sky-blue bg-[url(/rewards/circles-bg.svg)] bg-cover bg-center" />
           <div className="relative min-h-screen flex flex-col">
