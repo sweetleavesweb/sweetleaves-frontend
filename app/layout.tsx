@@ -6,6 +6,7 @@ import AgeGate from "./components/AgeGate";
 import AlpineIQProvider from "./components/AlpineIQProvider";
 import PageViewTracker from "./components/PageViewTracker";
 import GardenClubPopup from "./components/GardenClubPopup";
+import MetaPixel from "./components/MetaPixel";
 import Nav from "./components/Nav";
 import Footer from "./components/Footer";
 import "./globals.css";
@@ -54,6 +55,7 @@ export default async function RootLayout({
       <GoogleTagManager gtmId="GTM-KW2H37S6" />
       <GoogleAnalytics gaId="G-3M9FSQWF9T" />
       <body className={`${poppins.variable} antialiased`}>
+        <MetaPixel />
         <AgeGate initialVerified={initialVerified}>
           <div aria-hidden="true" className="fixed inset-0 -z-10 bg-sky-blue bg-[url(/rewards/circles-bg.svg)] bg-cover bg-center" />
           <div className="relative min-h-screen flex flex-col">
