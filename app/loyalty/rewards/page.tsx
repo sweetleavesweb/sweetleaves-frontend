@@ -26,7 +26,9 @@ export default function CheckRewardsPage() {
           </h1>
         </section>
 
-        <RewardsChecker />
+        <div data-clarity-mask="True">
+          <RewardsChecker />
+        </div>
       </div>
     </div>
   );
